@@ -1,74 +1,82 @@
 // ════════════════════════════════════════
-// NGAJI YUK! — App Logic v3
+// NGAJI YUK! — App v4
 // ════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Screens
-    var s1 = document.getElementById('s1');  // splash
-    var s2 = document.getElementById('s2');  // pilihan keluarga
-    var s3 = document.getElementById('s3');  // pilih kelompok
-    var s4 = document.getElementById('s4');  // belajar huruf
+    var s1 = document.getElementById('s1');
+    var s2 = document.getElementById('s2');
+    var s3 = document.getElementById('s3');
+    var s4 = document.getElementById('s4');
+    var s5 = document.getElementById('s5');
 
-    // Elements
     var btnMulai = document.getElementById('btnMulai');
-    var pilihTitik = document.getElementById('pilihTitik');
-    var pilihUnik = document.getElementById('pilihUnik');
+    var btnLanjut = document.getElementById('btnLanjut');
+    var btnDashboard = document.getElementById('backKeDashboard');
     var backKePilihan = document.getElementById('backKePilihan');
     var backKeKelompok = document.getElementById('backKeKelompok');
+    var menuHuruf = document.getElementById('menuHuruf');
+    var pilihTitik = document.getElementById('pilihTitik');
+    var pilihUnik = document.getElementById('pilihUnik');
     var kelompokContainer = document.getElementById('kelompokContainer');
     var hurufGrid = document.getElementById('hurufGrid');
-    var s3Title = document.getElementById('s3Title');
-    var s3Sub = document.getElementById('s3Sub');
     var s4Title = document.getElementById('s4Title');
     var s4Sub = document.getElementById('s4Sub');
+    var s5Title = document.getElementById('s5Title');
+    var s5Sub = document.getElementById('s5Sub');
     var audioPlayer = document.getElementById('audioPlayer');
     var detailPanel = document.getElementById('detailPanel');
     var detailContent = document.getElementById('detailContent');
 
     var currentAudio = null;
-    var currentKeluarga = null; // 'titik' or 'unik'
+    var currentKeluarga = null;
 
-    // --- Screen Switching ---
-    function showScreen(screen) {
-        document.querySelectorAll('.screen').forEach(function(s) {
-            s.classList.remove('active');
-        });
+    // --- Screen ---
+    function show(screen) {
+        document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
         screen.classList.add('active');
         screen.style.display = 'block';
-        document.body.style.background = window.getComputedStyle(screen).background || '#FDF6E3';
     }
 
-    // Splash → Pilihan
-    btnMulai.addEventListener('click', function() {
-        showScreen(s2);
-    });
+    // Splash → Dashboard
+    btnMulai.addEventListener('click', function() { show(s2); });
+
+    // Dashboard → Pilihan Keluarga (via "Lanjut Belajar" OR "Huruf Hijaiyah")
+    function goToPilihan() {
+        show(s3);
+    }
+    btnLanjut.addEventListener('click', goToPilihan);
+    menuHuruf.addEventListener('click', goToPilihan);
+
+    // Menu lainnya — placeholder
+    document.getElementById('menuTajwid').addEventListener('click', function() { alert('📖 Ilmu Tajwid — segera hadir!'); });
+    document.getElementById('menuVoice').addEventListener('click', function() { alert('🎙️ AI Voice Coach — segera hadir!'); });
+    document.getElementById('menuSurah').addEventListener('click', function() { alert('📖 Baca Surah — segera hadir!'); });
+
+    // Back from pilihan to dashboard
+    btnDashboard.addEventListener('click', function() { show(s2); });
 
     // Pilih Titik
     pilihTitik.addEventListener('click', function() {
         currentKeluarga = 'titik';
-        showKelompok(KELOMPOK_TITIK, 'Keluarga Huruf Titik', 'Pilih kelompok');
+        showKelompok(KELOMPOK_TITIK, 'Keluarga Huruf Titik');
     });
 
     // Pilih Unik
     pilihUnik.addEventListener('click', function() {
         currentKeluarga = 'unik';
-        showKelompok(KELOMPOK_UNIK, 'Keluarga Huruf Unik', 'Pilih kelompok');
+        showKelompok(KELOMPOK_UNIK, 'Keluarga Huruf Unik');
     });
 
     // Back from kelompok to pilihan
-    backKePilihan.addEventListener('click', function() {
-        showScreen(s2);
-    });
+    backKePilihan.addEventListener('click', function() { show(s3); });
 
     // Back from huruf to kelompok
-    backKeKelompok.addEventListener('click', function() {
-        showScreen(s3);
-    });
+    backKeKelompok.addEventListener('click', function() { show(s4); });
 
-    // --- Show Kelompok (Screen 3) ---
-    function showKelompok(data, title, sub) {
-        s3Title.textContent = title;
-        s3Sub.textContent = sub;
+    // --- Show Kelompok ---
+    function showKelompok(data, title) {
+        s4Title.textContent = title;
+        s4Sub.textContent = 'Pilih kelompok yang mau dipelajari';
         kelompokContainer.innerHTML = '';
 
         data.forEach(function(kel, idx) {
@@ -108,13 +116,13 @@ document.addEventListener('DOMContentLoaded', function() {
             kelompokContainer.appendChild(item);
         });
 
-        showScreen(s3);
+        show(s4);
     }
 
-    // --- Show Huruf (Screen 4) ---
+    // --- Show Huruf ---
     function showHuruf(kel, idx) {
-        s4Title.textContent = currentKeluarga === 'titik' ? 'Kelompok ' + (idx + 1) : 'Kelompok Unik';
-        s4Sub.textContent = 'Tap huruf untuk belajar — tap 🔊 untuk dengar';
+        s5Title.textContent = currentKeluarga === 'titik' ? 'Kelompok ' + (idx + 1) : 'Kelompok Unik';
+        s5Sub.textContent = 'Tap huruf untuk belajar';
         hurufGrid.innerHTML = '';
 
         kel.huruf.forEach(function(key) {
@@ -151,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
             p.textContent = '🔊';
             p.addEventListener('click', function(e) {
                 e.stopPropagation();
-                playAudio(d.audio);
+                window.playAudio(d.audio);
             });
             card.appendChild(p);
 
@@ -162,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
             hurufGrid.appendChild(card);
         });
 
-        showScreen(s4);
+        show(s5);
     }
 
     // --- Audio ---
@@ -195,14 +203,14 @@ document.addEventListener('DOMContentLoaded', function() {
         html += '<div class="detail-bunyi">Bunyi: "' + d.bunyi + '"</div>';
         html += '<button class="detail-play-btn" onclick="playAudio(\'' + d.audio + '\')">🔊</button>';
 
-        html += '<div class="detail-info"><h4>📝 Makhraj Huruf</h4><p>' + d.makhraj + '</p></div>';
+        html += '<div class="detail-box green"><h4>📝 Makhraj Huruf</h4><p>' + d.makhraj + '</p></div>';
 
         if (d.qolqolah) {
-            html += '<div class="detail-qolqolah"><h4>💡 Qolqolah!</h4><p>Huruf ini dibaca memantul saat sukun atau waqaf.</p></div>';
+            html += '<div class="detail-box orange"><h4>💡 Qolqolah!</h4><p>Huruf ini dibaca memantul saat sukun atau waqaf.</p></div>';
         }
 
         if (d.sambung === 'tidak_kiri') {
-            html += '<div class="detail-hint"><h4>⚠️ Catatan Sambung</h4><p>Huruf ini hanya punya bentuk isolated (terpisah) dan akhir — tidak bisa disambung ke huruf sebelumnya.</p></div>';
+            html += '<div class="detail-box gray"><h4>⚠️ Catatan Sambung</h4><p>Huruf ini hanya punya bentuk isolated (terpisah) dan akhir — tidak bisa disambung ke huruf sebelumnya.</p></div>';
         }
 
         html += '<div class="detail-contoh"><div class="detail-contoh-label">Contoh dalam Al-Qur\'an</div>';

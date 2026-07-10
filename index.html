@@ -6,7 +6,7 @@
     <title>Ngaji Yuk! — Belajar Al-Qur'an</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -27,27 +27,84 @@
     </div>
 </div>
 
-<!-- SCREEN 2: KOTAK PILIHAN KELUARGA -->
+<!-- SCREEN 2: DASHBOARD (seperti prototype) -->
 <div id="s2" class="screen">
-    <div class="s2-header">
-        <div class="s2-header-inner">
+    <div class="dash-header">
+        <div class="dash-header-inner">
+            <div class="dash-top">
+                <div>
+                    <div class="dash-salam">Assalamu'alaikum 👋</div>
+                    <div class="dash-nama">Hei, Sahabat Kecil!</div>
+                </div>
+                <div class="dash-stats">
+                    <div class="dash-streak">🔥 <span id="streakCount">3</span> hari</div>
+                    <div class="dash-xp"><span id="xpCount">240</span> XP</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dash-body">
+        <!-- Peta Perjalanan -->
+        <div class="map-card">
+            <h3 class="map-title">🗺️ Peta Perjalananmu</h3>
+            <div class="map-visual">
+                <div class="map-node done" style="left:50%;top:78%">🔤</div>
+                <div class="map-node done" style="left:28%;top:63%">✨</div>
+                <div class="map-node active" style="left:58%;top:48%">🔗</div>
+                <div class="map-node locked" style="left:32%;top:33%">🎵</div>
+                <div class="map-node locked" style="left:62%;top:18%">📖</div>
+                <svg class="map-line" viewBox="0 0 200 160">
+                    <path d="M100,128 Q68,110 56,100 Q70,85 116,78 Q90,62 64,52 Q100,38 124,30" stroke="#E0E0E0" stroke-width="2" fill="none" stroke-dasharray="4,3"/>
+                    <path d="M100,128 Q68,110 56,100" stroke="#D4A853" stroke-width="2" fill="none"/>
+                </svg>
+            </div>
+            <button id="btnLanjut" class="btn-lanjut-dash">▶ Lanjut Belajar</button>
+        </div>
+
+        <!-- 4 Kartu Menu -->
+        <div class="menu-grid">
+            <div class="menu-card" id="menuHuruf" style="background:#E8F5E9;border-color:#4CAF50">
+                <span class="menu-icon">🔤</span>
+                <span class="menu-label">Huruf Hijaiyah</span>
+            </div>
+            <div class="menu-card" id="menuTajwid" style="background:#E3F2FD;border-color:#1565C0">
+                <span class="menu-icon">🎵</span>
+                <span class="menu-label">Tajwid</span>
+            </div>
+            <div class="menu-card" id="menuVoice" style="background:#FFF3E0;border-color:#E65100">
+                <span class="menu-icon">🎙️</span>
+                <span class="menu-label">Voice Coach</span>
+            </div>
+            <div class="menu-card" id="menuSurah" style="background:#F3E5F5;border-color:#6A1B9A">
+                <span class="menu-icon">📖</span>
+                <span class="menu-label">Baca Surah</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCREEN 3: KOTAK PILIHAN KELUARGA -->
+<div id="s3" class="screen">
+    <div class="s-header">
+        <div class="s-header-inner">
+            <button class="btn-back" id="backKeDashboard">←</button>
             <h1>🔤 Huruf Hijaiyah</h1>
             <p>Pilih keluarga huruf yang mau dipelajari</p>
         </div>
     </div>
-    <div class="s2-body">
+    <div class="s-body">
         <div class="pilihan-container">
             <div class="pilihan-card" id="pilihTitik">
                 <div class="pilihan-badge" style="background:#1B5E3B">🔵</div>
                 <h2>Keluarga Huruf Titik</h2>
-                <p>20 huruf dengan titik — kelompokkan berdasarkan jumlah & posisi titik</p>
+                <p>20 huruf — dikelompokkan berdasarkan bentuk</p>
                 <div class="pilihan-preview">ب ت ث · ج ح خ · د ذ · ر ز · س ش · ص ض · ط ظ · ع غ · ف ق</div>
                 <span class="pilihan-total">20 huruf · 9 kelompok</span>
             </div>
             <div class="pilihan-card" id="pilihUnik">
                 <div class="pilihan-badge" style="background:#6A1B9A">🟣</div>
                 <h2>Keluarga Huruf Unik</h2>
-                <p>9 huruf istimewa — bentuknya beda dari yang lain</p>
+                <p>9 huruf istimewa — bentuknya berbeda</p>
                 <div class="pilihan-preview">ا · ل · م · ه · و · ك · ن · ي · ء</div>
                 <span class="pilihan-total">9 huruf · 1 kelompok</span>
             </div>
@@ -55,30 +112,30 @@
     </div>
 </div>
 
-<!-- SCREEN 3: PILIH KELOMPOK -->
-<div id="s3" class="screen">
-    <div class="s2-header">
-        <div class="s2-header-inner">
+<!-- SCREEN 4: PILIH KELOMPOK -->
+<div id="s4" class="screen">
+    <div class="s-header">
+        <div class="s-header-inner">
             <button class="btn-back" id="backKePilihan">←</button>
-            <h1 id="s3Title">Kelompok</h1>
-            <p id="s3Sub">Pilih kelompok huruf yang mau dipelajari</p>
+            <h1 id="s4Title">Kelompok</h1>
+            <p id="s4Sub">Pilih kelompok yang mau dipelajari</p>
         </div>
     </div>
-    <div class="s2-body">
+    <div class="s-body">
         <div id="kelompokContainer" class="kelompok-list"></div>
     </div>
 </div>
 
-<!-- SCREEN 4: BELAJAR HURUF -->
-<div id="s4" class="screen">
-    <div class="s2-header">
-        <div class="s2-header-inner">
+<!-- SCREEN 5: BELAJAR HURUF -->
+<div id="s5" class="screen">
+    <div class="s-header">
+        <div class="s-header-inner">
             <button class="btn-back" id="backKeKelompok">←</button>
-            <h1 id="s4Title">Kelompok 1</h1>
-            <p id="s4Sub">Tap huruf untuk belajar</p>
+            <h1 id="s5Title">Kelompok 1</h1>
+            <p id="s5Sub">Tap huruf untuk belajar</p>
         </div>
     </div>
-    <div class="s2-body">
+    <div class="s-body">
         <div id="hurufGrid" class="huruf-grid-full"></div>
     </div>
 </div>
