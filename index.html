@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngaji Yuk! - Belajar Mengaji Seru & Interaktif</title>
+    <meta name="description" content="Aplikasi belajar mengaji interaktif untuk anak-anak. Belajar huruf hijaiyah, makhraj, harakat, dan talaqqi dengan AI.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 🏠 HEADER -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <span class="logo-icon">🌙</span>
+                    <span class="logo-text">Ngaji Yuk!</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#tentang">Tentang</a></li>
+                    <li><a href="#level">Level</a></li>
+                    <li><a href="#talaqqi">Talaqqi</a></li>
+                    <li><a href="#harga">Harga</a></li>
+                </ul>
+                <button class="nav-toggle" aria-label="Buka menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 🎯 HERO -->
+    <section class="hero" id="beranda">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">🌟 GRATIS untuk Semua</span>
+                    <h1>Belajar Mengaji Jadi <span class="highlight">Seru & Interaktif</span></h1>
+                    <p>Anak-anak belajar huruf hijaiyah, makhraj, dan harakat dengan audio asli, ditambah fitur Talaqqi AI yang siap koreksi bacaan secara langsung!</p>
+                    <div class="hero-cta">
+                        <a href="#coba" class="btn btn-primary">🚀 Coba Gratis</a>
+                        <a href="#tentang" class="btn btn-secondary">📖 Pelajari Dulu</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">30+</span>
+                            <span class="stat-label">Audio VO</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Level Belajar</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Gratis</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <div class="hero-card-header">
+                            <span>🔊 Putar VO Hijaiyah</span>
+                        </div>
+                        <div class="hero-card-body">
+                            <div class="huruf-display">ب</div>
+                            <p class="huruf-nama">Ba'</p>
+                            <button class="btn-play" onclick="playPreview()">🔊 Dengarkan</button>
+                            <p class="huruf-keterangan">Satu titik di bawah, seperti perahu kecil</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🎵 TENTANG -->
+    <section class="tentang" id="tentang">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kenapa <span class="highlight">Ngaji Yuk!</span>?</h2>
+                <p>Aplikasi belajar mengaji yang dibuat khusus untuk anak-anak Indonesia</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Visual Menarik</h3>
+                    <p>Huruf besar, warna cerah, dan ilustrasi ramah anak yang bikin betah belajar</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎙️</div>
+                    <h3>Audio Asli</h3>
+                    <p>VO Makhraj asli — bukan suara robot. Anak dengar cara baca yang benar</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Talaqqi AI</h3>
+                    <p>Rekam bacaan anak → AI analisis → feedback langsung koreksi makhraj</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Offline & Gratis</h3>
+                    <p>Bisa dipake tanpa internet setelah di-load. Gak perlu bayar sepeserpun</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Orang tua bisa pantau perkembangan anak lewat dashboard</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Sistem Level</h3>
+                    <p>Dari Hijaiyah → Makhraj → Harakat → Talaqqi → Tajwid. Bertahap!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📚 LEVEL -->
+    <section class="level" id="level">
+        <div class="container">
+            <div class="section-header">
+                <h2>Level <span class="highlight">Belajar</span></h2>
+                <p>Dari nol sampai bisa baca Al-Qur'an dengan benar</p>
+            </div>
+            <div class="level-timeline">
+                <div class="level-item active">
+                    <div class="level-number">1</div>
+                    <div class="level-card">
+                        <span class="level-badge">✅ Selesai</span>
+                        <h3>🅰️ Huruf Hijaiyah</h3>
+                        <p>Kenalan dengan 28+ huruf hijaiyah lengkap dengan makhraj-nya</p>
+                        <div class="level-progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        <span class="progress-text">30 VO siap</span>
+                    </div>
+                </div>
+                <div class="level-item active">
+                    <div class="level-number">2</div>
+                    <div class="level-card">
+                        <span class="level-badge">✅ Selesai</span>
+                        <h3>🗣️ Makhraj</h3>
+                        <p>Tempat keluar huruf — dari tenggorokan, lidah, bibir, dan hidung</p>
+                        <div class="level-progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        <span class="progress-text">30 VO siap</span>
+                    </div>
+                </div>
+                <div class="level-item">
+                    <div class="level-number">3</div>
+                    <div class="level-card">
+                        <span class="level-badge in-progress">🔄 Proses</span>
+                        <h3>🔺 Harakat</h3>
+                        <p>Belajar Fathah, Kasrah, Dhommah — Ba-Bi-Bu, Ta-Ti-Tu, dan seterusnya</p>
+                        <div class="level-progress">
+                            <div class="progress-bar" style="width: 30%"></div>
+                        </div>
+                        <span class="progress-text">VO sedang dibuat</span>
+                    </div>
+                </div>
+                <div class="level-item">
+                    <div class="level-number">4</div>
+                    <div class="level-card">
+                        <span class="level-badge coming-soon">🔜 Segera</span>
+                        <h3>🎙️ Talaqqi</h3>
+                        <p>Setor bacaan langsung — rekam → AI koreksi → ulangi sampai benar</p>
+                        <div class="level-progress">
+                            <div class="progress-bar" style="width: 15%"></div>
+                        </div>
+                        <span class="progress-text">Fitur sedang dikembangkan</span>
+                    </div>
+                </div>
+                <div class="level-item">
+                    <div class="level-number">5</div>
+                    <div class="level-card">
+                        <span class="level-badge coming-soon">🔜 Segera</span>
+                        <h3>📖 Ilmu Tajwid</h3>
+                        <p>Mad, Qolqolah, Sukun, dan hukum bacaan lainnya</p>
+                        <div class="level-progress">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text">Menyusul</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🎤 TALAQQI -->
+    <section class="talaqqi" id="talaqqi">
+        <div class="container">
+            <div class="section-header">
+                <h2>🎙️ Talaqqi — <span class="highlight">Koreksi AI</span></h2>
+                <p>Fitur unggulan: rekam bacaan anak, AI dengar & kasih feedback langsung</p>
+            </div>
+            <div class="talaqqi-demo">
+                <div class="talaqqi-visual">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="phone-header">🎙️ Talaqqi</div>
+                            <div class="huruf-besar">ث</div>
+                            <p class="huruf-kecil">Tsa'</p>
+                            <button class="btn-record" onclick="alert('🔴 Demo: Rekam akan aktif di aplikasi penuh!')">
+                                <span class="record-icon">🎤</span>
+                                <span>Rekam</span>
+                            </button>
+                            <div class="feedback-box">
+                                <span class="feedback-label">🤖 AI:</span>
+                                <p class="feedback-text">"Coba jepit lidah diantara dua gigi depan ya!"</p>
+                            </div>
+                            <button class="btn-play-small">🔊 Putar Ulang</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="talaqqi-steps">
+                    <h3>Bagaimana Cara Kerjanya?</h3>
+                    <ol class="steps-list">
+                        <li>
+                            <span class="step-num">1</span>
+                            <div>
+                                <strong>Dengar VO</strong>
+                                <p>Anak dengerin cara baca huruf yang benar dari Abah</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-num">2</span>
+                            <div>
+                                <strong>Rekam Bacaan</strong>
+                                <p>Tekan tombol merah, baca hurufnya dengan suara keras</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-num">3</span>
+                            <div>
+                                <strong>AI Analisis</strong>
+                                <p>Kecerdasan buatan denger dan kasih feedback makhraj</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-num">4</span>
+                            <div>
+                                <strong>Ulangi Sampai Benar ✅</strong>
+                                <p>Latihan terus sampai makhrajnya pas dan dapat bintang ⭐</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 💎 HARGA -->
+    <section class="harga" id="harga">
+        <div class="container">
+            <div class="section-header">
+                <h2>Gratis <span class="highlight">Selamanya</span></h2>
+                <p>Ngaji Yuk! 100% gratis untuk semua anak Indonesia</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">🎉 GRATIS</div>
+                    <div class="pricing-header">
+                        <h3>Ngaji Yuk!</h3>
+                        <div class="price">
+                            <span class="price-amount">Rp 0</span>
+                            <span class="price-period">/selamanya</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✅ 30+ Audio VO Makhraj</li>
+                        <li>✅ 5 Level Belajar</li>
+                        <li>✅ Fitur Talaqqi AI</li>
+                        <li>✅ Progress Tracking</li>
+                        <li>✅ Dashboard Orang Tua</li>
+                        <li>✅ Bisa Offline</li>
+                        <li>✅ Tanpa Iklan</li>
+                    </ul>
+                    <p class="pricing-note">💚 Donasi sukarela untuk pengembangan</p>
+                    <a href="#coba" class="btn btn-primary btn-full">🚀 Mulai Belajar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📱 CTA -->
+    <section class="cta" id="coba">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Siap Belajar Mengaji?</h2>
+                <p>Ngaji Yuk! masih dalam tahap pengembangan. Tinggalkan email kamu dan Aish kabarin pas aplikasinya siap!</p>
+                <form class="waitlist-form" onsubmit="event.preventDefault(); alert('✅ Terima kasih! Aish akan kabarin Abah/Ibu ya 😊'); this.reset();">
+                    <input type="email" placeholder="Email orang tua..." required>
+                    <input type="text" placeholder="Nama anak (opsional)">
+                    <button type="submit" class="btn btn-primary">🔔 Kabarin Aku!</button>
+                </form>
+                <p class="cta-small">Atau tanyakan langsung ke Abah via WhatsApp</p>
+                <a href="https://wa.me/6281928880602" class="btn btn-wa" target="_blank">💬 Chat Abah</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📋 FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo-icon">🌙</span>
+                    <span class="logo-text">Ngaji Yuk!</span>
+                    <p>Belajar mengaji jadi seru dan interaktif untuk anak-anak Indonesia.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="#beranda">Beranda</a></li>
+                        <li><a href="#tentang">Tentang</a></li>
+                        <li><a href="#level">Level</a></li>
+                        <li><a href="#talaqqi">Talaqqi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><a href="https://wa.me/6281928880602">WhatsApp</a></li>
+                        <li><a href="mailto:ganststudio@gmail.com">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Ngaji Yuk! — Dibuat dengan ❤️ oleh Abah Gandhi untuk anak-anak Indonesia</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
