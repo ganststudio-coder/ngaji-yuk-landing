@@ -29,14 +29,12 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--emerald);c
 .btn-gold:hover{transform:translateY(-2px)}
 .btn-gold:active{transform:scale(0.96)}
 
-/* ── SLIDE CONTAINER ── */
 .slide-container{
     position:relative;width:100%;height:100vh;overflow:hidden;
 }
 .slide-page{
     position:absolute;top:0;left:0;width:100%;height:100%;
     overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--cream);
-    transform:translateX(100%);will-change:transform;
 }
 
 /* ── DASHBOARD ── */
