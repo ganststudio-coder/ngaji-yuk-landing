@@ -238,15 +238,58 @@ body {
     font-weight: 700;
     color: var(--dark);
     line-height: 1.2;
-    margin-bottom: 8px;
+    margin-bottom: 0;
     font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    transition: transform 0.3s;
+    min-width: 80px;
+    text-align: center;
+}
+
+.huruf-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
+.nav-arrow {
+    background: var(--primary-light);
+    color: var(--primary);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-arrow:hover {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.1);
 }
 
 .huruf-nama {
     font-size: 24px;
     font-weight: 700;
     color: var(--primary);
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+}
+
+.huruf-makhraj {
+    font-size: 13px;
+    color: var(--primary);
+    background: var(--primary-light);
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+    font-weight: 600;
 }
 
 .btn-play {

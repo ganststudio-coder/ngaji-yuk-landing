@@ -66,10 +66,15 @@
                             <span>🔊 Putar VO Hijaiyah</span>
                         </div>
                         <div class="hero-card-body">
-                            <div class="huruf-display">ب</div>
-                            <p class="huruf-nama">Ba'</p>
-                            <button class="btn-play" onclick="playAudio('audio/02_huruf_ba.mp3', this)">🔊 Dengarkan</button>
-                            <p class="huruf-keterangan">Satu titik di bawah, seperti perahu kecil</p>
+                            <div class="huruf-nav">
+                                <button class="nav-arrow" onclick="prevHuruf()" id="btnPrev">◀</button>
+                                <div class="huruf-display" id="hurufDisplay">ب</div>
+                                <button class="nav-arrow" onclick="nextHuruf()" id="btnNext">▶</button>
+                            </div>
+                            <p class="huruf-nama" id="hurufNama">Ba'</p>
+                            <p class="huruf-keterangan" id="hurufKeterangan">Satu titik di bawah, seperti perahu kecil</p>
+                            <p class="huruf-makhraj" id="hurufMakhraj">Makhraj: Kedua bibir</p>
+                            <button class="btn-play" onclick="playCurrentHuruf()">🔊 Dengarkan</button>
                         </div>
                     </div>
                 </div>
