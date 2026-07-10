@@ -47,17 +47,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// 🔊 Preview play button (hero) - placeholder
-function playPreview() {
-    // Cek apakah ada audio preview
-    const audioSrc = 'audio/preview_ba.mp3';
+// 🔊 Play audio function
+function playAudio(src, btn) {
+    // Hentikan audio yang sedang diputar
+    if (window.currentAudio) {
+        window.currentAudio.pause();
+        window.currentAudio = null;
+    }
     
-    // Coba play audio kalo ada
-    const audio = new Audio(audioSrc);
+    const audio = new Audio(src);
+    window.currentAudio = audio;
+    
+    // Update button state
+    if (btn) {
+        btn.textContent = '⏹️ Memutar...';
+        btn.style.opacity = '0.7';
+    }
+    
     audio.play().then(() => {
-        console.log('🔊 Memutar preview...');
-    }).catch(() => {
-        // Fallback kalo file belum ada
-        alert('🔊 Preview audio akan tersedia di aplikasi penuh!');
+        if (btn) {
+            btn.textContent = '🔊 Putar Ulang';
+            btn.style.opacity = '1';
+        }
+    }).catch((err) => {
+        console.log('Audio error:', err);
+        if (btn) {
+            btn.textContent = '🔊 Dengarkan';
+            btn.style.opacity = '1';
+        }
+    });
+    
+    audio.addEventListener('ended', () => {
+        if (btn) {
+            btn.textContent = '🔊 Dengarkan';
+            btn.style.opacity = '1';
+        }
+        window.currentAudio = null;
     });
 }
