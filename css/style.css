@@ -378,6 +378,110 @@ section { padding: 100px 0; }
     color: var(--text-light);
 }
 
+/* 👨‍👩‍👧‍👦 KELOMPOK HURUF */
+.kelompok {
+    background: white;
+    padding: 100px 0;
+}
+
+.keluarga-card {
+    background: #f8fdfa;
+    border-radius: 24px;
+    padding: 32px;
+    margin-bottom: 32px;
+    border: 2px solid var(--primary-light);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.keluarga-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.keluarga-badge {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.keluarga-header h3 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--dark);
+}
+
+.keluarga-header p {
+    color: var(--text-light);
+    font-size: 15px;
+    margin-top: 4px;
+}
+
+.keluarga-huruf {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.keluarga-item {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    transition: all 0.3s;
+    border: 1px solid #e2e8f0;
+}
+
+.keluarga-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-color: var(--primary-light);
+}
+
+.kel-item-huruf {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--dark);
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.kel-item-nama {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.kel-item-sambung {
+    font-size: 13px;
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 6px;
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    direction: rtl;
+    background: #f1f5f9;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.kel-item-titik {
+    font-size: 12px;
+    color: #718096;
+    display: block;
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .keluarga-huruf {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 /* 🔗 HURUF SAMBUNG */
 .sambung {
     background: #f8fdfa;
@@ -490,6 +594,33 @@ section { padding: 100px 0; }
     padding: 16px 24px;
     border-radius: 12px;
     border: 1px solid var(--primary-light);
+}
+
+.sambung-catatan {
+    margin-top: 16px;
+    color: #d97706;
+    font-size: 14px;
+    background: #fffbeb;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid #fde68a;
+    font-weight: 600;
+}
+
+.sambung-info {
+    margin-top: 24px;
+    color: var(--text-light);
+    font-size: 15px;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--primary-light);
+}
+
+.sambung-info strong {
+    font-size: 28px;
+    color: var(--dark);
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
 }
 
 /* LEVEL TIMELINE */
