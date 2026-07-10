@@ -1,215 +1,158 @@
 // ════════════════════════════════════════
-// NGAJI YUK! — Main Application Logic
+// NGAJI YUK! — Main Application
 // ════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', function() {
-    const splashScreen = document.getElementById('splash');
-    const hurufScreen = document.getElementById('huruf');
-    const btnMulai = document.getElementById('btnMulai');
-    const keluargaContainer = document.getElementById('keluargaContainer');
-    const audioPlayer = document.getElementById('audioPlayer');
-    const detailPanel = document.getElementById('detailPanel');
-    const detailContent = document.getElementById('detailContent');
-    const btnMic = document.getElementById('btnMic');
-    const voiceResult = document.getElementById('voiceResult');
+    var splash = document.getElementById('splash');
+    var hurufScreen = document.getElementById('huruf');
+    var btnMulai = document.getElementById('btnMulai');
+    var bodyHuruf = document.getElementById('bodyHuruf');
+    var audioPlayer = document.getElementById('audioPlayer');
+    var detailPanel = document.getElementById('detailPanel');
+    var detailContent = document.getElementById('detailContent');
 
-    let currentPlayingAudio = null;
-    let micState = 'idle'; // idle | listening | analyzing | result
+    var currentAudio = null;
 
-    // --- Screen Management ---
+    // --- Go to Huruf ---
     btnMulai.addEventListener('click', function() {
-        splashScreen.style.display = 'none';
+        splash.classList.remove('active');
+        splash.style.display = 'none';
         hurufScreen.style.display = 'block';
         document.body.style.background = '#FDF6E3';
     });
 
-    // --- Audio Playback ---
+    // --- Audio playback ---
     window.playAudio = function(src) {
-        if (currentPlayingAudio) {
-            currentPlayingAudio.pause();
-            currentPlayingAudio.currentTime = 0;
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
         }
         audioPlayer.src = src;
-        audioPlayer.play().catch(function(e) {
-            console.log('Audio play error:', e);
-        });
-        currentPlayingAudio = audioPlayer;
+        audioPlayer.play().catch(function(e) {});
+        currentAudio = audioPlayer;
     };
 
-    // --- Detail Panel ---
+    // --- Detail panel ---
     window.tutupDetail = function() {
         detailPanel.style.display = 'none';
-        if (currentPlayingAudio) {
-            currentPlayingAudio.pause();
-            currentPlayingAudio.currentTime = 0;
-            currentPlayingAudio = null;
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            currentAudio = null;
         }
     };
 
-    function tampilkanDetail(hurufKey) {
-        const data = HURUF_DATA[hurufKey];
-        detailContent.innerHTML = [
-            '<div class="detail-char">' + data.char + '</div>',
-            '<div class="detail-name">' + data.name + '</div>',
-            '<div class="detail-bunyi">Bunyi: "' + data.bunyi + '"</div>',
-            '<button class="detail-play-btn" onclick="playAudio(\'' + data.audio + '\')">🔊</button>',
-            '<div class="detail-info-box">',
-            '<h4>📝 Makhraj Huruf</h4>',
-            '<p>' + data.makhraj + '</p>',
-            '</div>',
-            data.qolqolah ? [
-                '<div class="detail-qolqolah-box">',
-                '<h4>💡 Perhatikan!</h4>',
-                '<p>Huruf ini termasuk <strong>Qolqolah</strong> — dibaca memantul saat sukun atau waqaf.</p>',
-                '</div>'
-            ].join('') : '',
-            '<div class="detail-contoh">',
-            '<div class="detail-contoh-label">Contoh dalam Al-Qur\'an:</div>',
-            '<div class="detail-contoh-ayat">' + data.contoh + '</div>',
-            '</div>'
-        ].join('');
+    function showDetail(key) {
+        var d = HURUF_DATA[key];
+        var html = '';
+
+        html += '<div class="detail-char">' + d.char + '</div>';
+        html += '<div class="detail-name">' + d.name + '</div>';
+        html += '<div class="detail-bunyi">Bunyi: "' + d.bunyi + '"</div>';
+        html += '<button class="detail-play-btn" onclick="playAudio(\'' + d.audio + '\')">🔊</button>';
+
+        html += '<div class="detail-info"><h4>📝 Makhraj Huruf</h4><p>' + d.makhraj + '</p></div>';
+
+        if (d.qolqolah) {
+            html += '<div class="detail-qolqolah"><h4>💡 Qolqolah!</h4><p>Huruf ini dibaca memantul saat sukun atau waqaf.</p></div>';
+        }
+
+        if (d.sambung === 'tidak_kiri') {
+            html += '<div class="detail-qolqolah" style="background:#ECEFF1;border-color:#B0BEC5"><h4>⚠️ Catatan Sambung</h4><p>Huruf ini hanya punya bentuk isolated (terpisah) dan akhir — tidak bisa disambung ke huruf sebelumnya.</p></div>';
+        }
+
+        html += '<div class="detail-contoh"><div class="detail-contoh-label">Contoh dalam Al-Qur\'an</div>';
+        html += '<div class="detail-contoh-ayat">' + d.contoh + '</div></div>';
+
+        detailContent.innerHTML = html;
         detailPanel.style.display = 'flex';
     }
 
-    // --- Reset Voice Coach ---
-    window.resetVoiceCoach = function() {
-        micState = 'idle';
-        btnMic.classList.remove('listening');
-        btnMic.innerHTML = '🎤';
-        voiceResult.style.display = 'none';
-    };
-
-    function startListening() {
-        micState = 'listening';
-        btnMic.classList.add('listening');
-        btnMic.innerHTML = '🔴';
-        voiceResult.style.display = 'none';
-
-        setTimeout(function() {
-            micState = 'analyzing';
-            btnMic.classList.remove('listening');
-            btnMic.innerHTML = '⚙️';
-
-            setTimeout(function() {
-                micState = 'result';
-                btnMic.innerHTML = '🎤';
-                // Random: kadang benar kadang salah
-                displayVoiceResult(Math.random() > 0.4);
-            }, 2000);
-        }, 3000);
-    }
-
-    btnMic.addEventListener('click', function() {
-        if (micState === 'idle') {
-            startListening();
-        } else {
-            resetVoiceCoach();
-        }
-    });
-
-    function displayVoiceResult(isCorrect) {
-        if (isCorrect) {
-            voiceResult.innerHTML = [
-                '<div class="vr-score">',
-                '<div class="vr-stars">⭐⭐⭐</div>',
-                '<div class="vr-text">Masya Allah, bacaanmu bagus sekali! 🎉</div>',
-                '</div>',
-                '<div class="vr-actions">',
-                '<button class="btn-lanjut" onclick="resetVoiceCoach()">Lanjut Belajar →</button>',
-                '</div>'
-            ].join('');
-        } else {
-            voiceResult.innerHTML = [
-                '<div class="vr-score">',
-                '<div class="vr-stars">⭐</div>',
-                '<div class="vr-text">Ayo coba lagi, kamu pasti bisa! 💪</div>',
-                '</div>',
-                '<div class="vr-feedback">',
-                '💡 Coba perhatikan makhraj dan cara bacanya. Dengarkan dulu contohnya, lalu ulangi lagi ya!',
-                '</div>',
-                '<div class="vr-actions">',
-                '<button class="btn-ulang" onclick="resetVoiceCoach()">🎙️ Coba Lagi</button>',
-                '</div>'
-            ].join('');
-        }
-        voiceResult.style.display = 'block';
-    }
-
-    // --- Render Huruf ---
-    function renderHurufKeluarga() {
-        KELUARGA.forEach(function(keluarga) {
+    // --- Render huruf ---
+    function render() {
+        KELUARGA.forEach(function(kel) {
             var block = document.createElement('div');
             block.className = 'keluarga-block';
 
-            var labelDiv = document.createElement('div');
-            labelDiv.className = 'keluarga-label';
+            // Label
+            var label = document.createElement('div');
+            label.className = 'keluarga-label';
 
             var badge = document.createElement('div');
             badge.className = 'keluarga-badge';
-            badge.style.background = keluarga.bg;
-            badge.textContent = keluarga.badge;
+            badge.style.background = kel.bg;
+            badge.textContent = kel.badge;
 
-            var namaSpan = document.createElement('div');
-            namaSpan.className = 'keluarga-nama';
-            namaSpan.textContent = keluarga.nama;
+            var nama = document.createElement('div');
+            nama.className = 'keluarga-nama';
+            nama.textContent = kel.nama;
 
-            labelDiv.appendChild(badge);
-            labelDiv.appendChild(namaSpan);
-            block.appendChild(labelDiv);
+            label.appendChild(badge);
+            label.appendChild(nama);
+            block.appendChild(label);
 
+            // Grid
             var grid = document.createElement('div');
             grid.className = 'keluarga-grid';
 
-            keluarga.huruf.forEach(function(hurufKey) {
-                var data = HURUF_DATA[hurufKey];
+            kel.huruf.forEach(function(key) {
+                var d = HURUF_DATA[key];
                 var card = document.createElement('div');
                 card.className = 'huruf-card';
 
-                if (data.qolqolah) {
-                    var qBadge = document.createElement('span');
-                    qBadge.className = 'h-qolqolah';
-                    qBadge.textContent = 'Qolqolah';
-                    card.appendChild(qBadge);
+                // Badge Qolqolah
+                if (d.qolqolah) {
+                    var q = document.createElement('span');
+                    q.className = 'h-qolqolah';
+                    q.textContent = 'Qolqolah';
+                    card.appendChild(q);
                 }
 
-                if (data.sambung === 'tidak_kiri') {
-                    var tBadge = document.createElement('span');
-                    tBadge.className = 'h-tidak-sambung';
-                    tBadge.textContent = '❌ Sambung Kiri';
-                    card.appendChild(tBadge);
+                // Badge tidak sambung
+                if (d.sambung === 'tidak_kiri') {
+                    var h = document.createElement('span');
+                    h.className = 'h-hint';
+                    h.textContent = '❌ Sambung Kiri';
+                    card.appendChild(h);
                 }
 
-                var charSpan = document.createElement('span');
-                charSpan.className = 'h-char';
-                charSpan.textContent = data.char;
-                card.appendChild(charSpan);
+                // Char
+                var c = document.createElement('span');
+                c.className = 'h-char';
+                c.textContent = d.char;
+                card.appendChild(c);
 
-                var nameSpan = document.createElement('span');
-                nameSpan.className = 'h-name';
-                nameSpan.textContent = data.name;
-                card.appendChild(nameSpan);
+                // Name
+                var n = document.createElement('span');
+                n.className = 'h-name';
+                n.textContent = d.name;
+                card.appendChild(n);
 
-                var playBtn = document.createElement('button');
-                playBtn.className = 'h-play';
-                playBtn.textContent = '🔊';
-                playBtn.addEventListener('click', function(e) {
+                // Play button
+                var p = document.createElement('button');
+                p.className = 'h-play';
+                p.textContent = '🔊';
+
+                // Play event
+                p.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    playAudio(data.audio);
+                    playAudio(d.audio);
                 });
-                card.appendChild(playBtn);
 
+                card.appendChild(p);
+
+                // Click card → detail
                 card.addEventListener('click', function() {
-                    tampilkanDetail(hurufKey);
+                    showDetail(key);
                 });
 
                 grid.appendChild(card);
             });
 
             block.appendChild(grid);
-            keluargaContainer.appendChild(block);
+            bodyHuruf.appendChild(block);
         });
     }
 
-    // --- Init ---
-    renderHurufKeluarga();
+    render();
 });

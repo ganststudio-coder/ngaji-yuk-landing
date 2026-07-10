@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ngaji Yuk! — Belajar Al-Qur'an</title>
-    <meta name="description" content="Belajar huruf hijaiyah interaktif untuk anak Indonesia.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,65 +11,49 @@
 </head>
 <body>
 
-<div id="app">
-    <!-- ⭐ SCREEN 1: SPLASH -->
-    <div id="splash" class="screen splash">
-        <div class="splash-bg">
-            <div class="circle c1"></div>
-            <div class="circle c2"></div>
-            <div class="circle c3"></div>
-            <div class="circle c4"></div>
-            <div class="circle c5"></div>
-        </div>
-        <div class="splash-content">
-            <div class="splash-icon">📖</div>
-            <h1 class="splash-title">Ngaji Yuk!</h1>
-            <p class="splash-sub">Belajar Al-Qur'an itu menyenangkan</p>
-            <button id="btnMulai" class="btn-gold">Mulai Sekarang →</button>
+<!-- ⭐ SPLASH SCREEN -->
+<div id="splash" class="screen active">
+    <div class="splash-bg">
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+        <div class="circle c3"></div>
+        <div class="circle c4"></div>
+        <div class="circle c5"></div>
+    </div>
+    <div class="splash-content">
+        <div class="splash-icon">📖</div>
+        <h1 class="splash-title">Ngaji Yuk!</h1>
+        <p class="splash-sub">Belajar Al-Qur'an itu menyenangkan</p>
+        <button id="btnMulai" class="btn-gold">Mulai Sekarang →</button>
+        <p class="splash-kredit">Aplikasi dibuat oleh <strong>Ganst-Studio</strong></p>
+    </div>
+</div>
+
+<!-- ⭐ HURUF HIJAIYAH -->
+<div id="huruf" class="screen" style="display:none">
+    <div class="header-huruf">
+        <div class="header-inner">
+            <h1>🔤 Huruf Hijaiyah</h1>
+            <p>Tap huruf untuk belajar — tap 🔊 untuk dengar VO</p>
         </div>
     </div>
 
-    <!-- ⭐ SCREEN 2: HURUF HIJAIYAH -->
-    <div id="huruf" class="screen huruf" style="display:none">
-        <div class="huruf-header">
-            <div class="huruf-header-inner">
-                <div class="huruf-header-top">
-                    <h1>🔤 Huruf Hijaiyah</h1>
-                    <p>Tap huruf untuk dengar penjelasan & tips makhraj</p>
-                </div>
-            </div>
-        </div>
+    <div class="body-huruf" id="bodyHuruf"></div>
 
-        <div class="huruf-body">
-            <div id="keluargaContainer"></div>
-
-            <!-- 🎙️ Voice Coach -->
-            <div class="voice-section">
-                <div class="voice-card-inline">
-                    <div class="voice-icon-inline">🎙️</div>
-                    <div>
-                        <strong>AI Voice Coach</strong>
-                        <p>Tap mic untuk mulai. AI akan nilai bacaanmu!</p>
-                    </div>
-                    <button id="btnMic" class="btn-mic">🎤</button>
-                </div>
-                <div id="voiceResult" class="voice-result" style="display:none"></div>
-            </div>
-        </div>
-
-        <!-- Detail Panel -->
-        <div id="detailPanel" class="detail-panel" style="display:none">
-            <div class="detail-backdrop" onclick="tutupDetail()"></div>
-            <div class="detail-card">
+    <!-- Detail Panel -->
+    <div id="detailPanel" class="detail-layer" style="display:none">
+        <div class="detail-backdrop" onclick="tutupDetail()"></div>
+        <div class="detail-card">
+            <div class="detail-head">
                 <button class="detail-close" onclick="tutupDetail()">✕</button>
-                <div id="detailContent"></div>
             </div>
+            <div id="detailContent" class="detail-body"></div>
         </div>
     </div>
 </div>
 
-    <audio id="audioPlayer" style="display:none"></audio>
-    <script src="js/data.js"></script>
-    <script src="js/app.js"></script>
+<audio id="audioPlayer" style="display:none"></audio>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
