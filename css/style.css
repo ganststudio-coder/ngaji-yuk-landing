@@ -792,6 +792,100 @@ section { padding: 100px 0; }
 
 .btn-full { width: 100%; justify-content: center; }
 
+/* 📖 TAJWID */
+.tajwid {
+    background: #fffaf0;
+    padding: 100px 0;
+}
+
+.tajwid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.tajwid-card {
+    background: white;
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    transition: all 0.4s;
+    border: 2px solid transparent;
+}
+
+.tajwid-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    border-color: var(--gold);
+}
+
+.tajwid-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.tajwid-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 12px;
+}
+
+.tajwid-arab {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    margin-bottom: 12px;
+    padding: 12px;
+    background: #f0fdf6;
+    border-radius: 12px;
+    direction: rtl;
+}
+
+.tajwid-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.tajwid-control {
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 600;
+    background: var(--primary-light);
+    padding: 6px 12px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.tajwid-footer {
+    text-align: center;
+    margin-top: 48px;
+    padding: 20px;
+    background: white;
+    border-radius: 16px;
+    border: 2px dashed var(--gold);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-light);
+}
+
+.tajwid-footer strong {
+    color: var(--primary);
+}
+
+@media (max-width: 600px) {
+    .tajwid-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* CTA */
 .cta {
     background: linear-gradient(135deg, var(--primary) 0%, #0a6e49 100%);
