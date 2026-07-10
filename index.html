@@ -3,421 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ngaji Yuk! — Belajar Al-Qur'an itu Menyenangkan</title>
-    <meta name="description" content="Aplikasi belajar mengaji interaktif untuk anak-anak Indonesia. Belajar huruf hijaiyah, tajwid, dan baca Al-Qur'an dengan AI Voice Coach.">
+    <title>Ngaji Yuk! — Belajar Al-Qur'an</title>
+    <meta name="description" content="Belajar huruf hijaiyah interaktif untuk anak Indonesia.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- ⭐ NAV -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="#" class="logo">
-                    <span class="logo-icon">📖</span>
-                    <span class="logo-text">Ngaji Yuk!</span>
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#tentang">Tentang</a></li>
-                    <li><a href="#kelompok">Huruf</a></li>
-                    <li><a href="#tajwid">Tajwid</a></li>
-                    <li><a href="#fitur">Fitur</a></li>
-                    <li><a href="#surah">Surah</a></li>
-                </ul>
-                <button class="nav-toggle">☰</button>
-            </nav>
+<div id="app">
+    <!-- ⭐ SCREEN 1: SPLASH -->
+    <div id="splash" class="screen splash">
+        <div class="splash-bg">
+            <div class="circle c1"></div>
+            <div class="circle c2"></div>
+            <div class="circle c3"></div>
+            <div class="circle c4"></div>
+            <div class="circle c5"></div>
         </div>
-    </header>
+        <div class="splash-content">
+            <div class="splash-icon">📖</div>
+            <h1 class="splash-title">Ngaji Yuk!</h1>
+            <p class="splash-sub">Belajar Al-Qur'an itu menyenangkan</p>
+            <button id="btnMulai" class="btn-gold">Mulai Sekarang →</button>
+        </div>
+    </div>
 
-    <!-- 🎯 HERO -->
-    <section class="hero" id="beranda">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">🎉 GRATIS Selamanya</div>
-                <h1 class="hero-title">
-                    Belajar Al-Qur'an<br>
-                    <span class="highlight">Menyenangkan</span>
-                </h1>
-                <p class="hero-desc">Aplikasi belajar mengaji interaktif untuk anak Indonesia. Dari nol sampai bisa baca Al-Qur'an dengan benar.</p>
-                <div class="hero-actions">
-                    <button class="btn-primary" onclick="alert('🚀 Aplikasi penuh sedang dikembangkan!')">Mulai Sekarang →</button>
-                    <button class="btn-secondary" onclick="document.getElementById('tentang').scrollIntoView({behavior:'smooth'})">Pelajari Dulu</button>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">29</span>
-                        <span class="stat-label">Huruf Hijaiyah</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">9</span>
-                        <span class="stat-label">Hukum Tajwid</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Gratis</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-card">
-                    <div class="hero-card-badge">📖 Ngaji Yuk!</div>
-                    <div class="hero-card-body">
-                        <div class="huruf-grid">
-                            <span class="huruf-hero" style="animation-delay:0s">ا</span>
-                            <span class="huruf-hero" style="animation-delay:0.1s">ب</span>
-                            <span class="huruf-hero" style="animation-delay:0.2s">ت</span>
-                            <span class="huruf-hero" style="animation-delay:0.3s">ث</span>
-                            <span class="huruf-hero" style="animation-delay:0.4s">ج</span>
-                            <span class="huruf-hero" style="animation-delay:0.5s">ح</span>
-                            <span class="huruf-hero" style="animation-delay:0.6s">خ</span>
-                            <span class="huruf-hero" style="animation-delay:0.7s">د</span>
-                            <span class="huruf-hero" style="animation-delay:0.8s">ذ</span>
-                        </div>
-                        <p class="hero-huruf-text">Belajar jadi seru 🎉</p>
-                    </div>
+    <!-- ⭐ SCREEN 2: HURUF HIJAIYAH -->
+    <div id="huruf" class="screen huruf" style="display:none">
+        <div class="huruf-header">
+            <div class="huruf-header-inner">
+                <div class="huruf-header-top">
+                    <h1>🔤 Huruf Hijaiyah</h1>
+                    <p>Tap huruf untuk dengar penjelasan & tips makhraj</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- 👨‍👩‍👧‍👦 KELOMPOK HURUF -->
-    <section class="kelompok" id="kelompok">
-        <div class="container">
-            <div class="section-header">
-                <h2>Kenali <span class="highlight">Huruf Hijaiyah</span></h2>
-                <p>29 huruf dikelompokkan berdasarkan bentuknya — biar cepet hafal!</p>
-            </div>
+        <div class="huruf-body">
+            <div id="keluargaContainer"></div>
 
-            <div class="keluarga-grid">
-                <!-- Keluarga Titik -->
-                <div class="keluarga-card">
-                    <div class="keluarga-badge" style="background:#1B5E3B">🔵</div>
-                    <h3>Keluarga Titik</h3>
-                    <div class="keluarga-row">
-                        <div class="kel-item">
-                            <span class="kel-huruf">ب</span>
-                            <span class="kel-nama">Ba'</span>
-                            <span class="kel-titik">1 titik di bawah</span>
-                        </div>
-                        <div class="kel-item">
-                            <span class="kel-huruf">ت</span>
-                            <span class="kel-nama">Ta'</span>
-                            <span class="kel-titik">2 titik di atas</span>
-                        </div>
-                        <div class="kel-item">
-                            <span class="kel-huruf">ث</span>
-                            <span class="kel-nama">Tsa'</span>
-                            <span class="kel-titik">3 titik di atas</span>
-                        </div>
+            <!-- 🎙️ Voice Coach -->
+            <div class="voice-section">
+                <div class="voice-card-inline">
+                    <div class="voice-icon-inline">🎙️</div>
+                    <div>
+                        <strong>AI Voice Coach</strong>
+                        <p>Tap mic untuk mulai. AI akan nilai bacaanmu!</p>
                     </div>
+                    <button id="btnMic" class="btn-mic">🎤</button>
                 </div>
-
-                <!-- Keluarga Melengkung -->
-                <div class="keluarga-card">
-                    <div class="keluarga-badge" style="background:#1565C0">🟢</div>
-                    <h3>Keluarga Melengkung</h3>
-                    <div class="keluarga-row">
-                        <div class="kel-item"><span class="kel-huruf">ج</span><span class="kel-nama">Jim</span><span class="kel-titik">tanpa titik</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ح</span><span class="kel-nama">Ha'</span><span class="kel-titik">tengah kosong</span></div>
-                        <div class="kel-item"><span class="kel-huruf">خ</span><span class="kel-nama">Kho'</span><span class="kel-titik">1 titik di atas</span></div>
-                        <div class="kel-item"><span class="kel-huruf">د</span><span class="kel-nama">Dal</span><span class="kel-titik">⚡tidak sambung kiri</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ذ</span><span class="kel-nama">Dzal</span><span class="kel-titik">⚡tidak sambung kiri</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ر</span><span class="kel-nama">Ro'</span><span class="kel-titik">⚡tidak sambung kiri</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ز</span><span class="kel-nama">Zai</span><span class="kel-titik">⚡tidak sambung kiri</span></div>
-                    </div>
-                </div>
-
-                <!-- Keluarga Bergerigi -->
-                <div class="keluarga-card">
-                    <div class="keluarga-badge" style="background:#E65100">🟡</div>
-                    <h3>Keluarga Bergerigi</h3>
-                    <div class="keluarga-row">
-                        <div class="kel-item"><span class="kel-huruf">س</span><span class="kel-nama">Sin</span><span class="kel-titik">3 gigi, tanpa titik</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ش</span><span class="kel-nama">Syin</span><span class="kel-titik">3 gigi, 3 titik</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ص</span><span class="kel-nama">Shod</span><span class="kel-titik">lingkaran besar</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ض</span><span class="kel-nama">Dhod</span><span class="kel-titik">1 titik di atas</span></div>
-                    </div>
-                </div>
-
-                <!-- Keluarga Unik -->
-                <div class="keluarga-card">
-                    <div class="keluarga-badge" style="background:#6A1B9A">🟣</div>
-                    <h3>Keluarga Unik</h3>
-                    <div class="keluarga-row">
-                        <div class="kel-item"><span class="kel-huruf">ط</span><span class="kel-nama">Tho'</span><span class="kel-titik">lingkaran+tongkat</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ظ</span><span class="kel-nama">Dzo'</span><span class="kel-titik">1 titik di atas</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ع</span><span class="kel-nama">'Ain</span><span class="kel-titik">mata terbuka</span></div>
-                        <div class="kel-item"><span class="kel-huruf">غ</span><span class="kel-nama">Ghoin</span><span class="kel-titik">1 titik di atas</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ف</span><span class="kel-nama">Fa'</span><span class="kel-titik">mangkuk+1 titik</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ق</span><span class="kel-nama">Qof</span><span class="kel-titik">2 ekor</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ك</span><span class="kel-nama">Kaf</span><span class="kel-titik">pohon tegak</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ل</span><span class="kel-nama">Lam</span><span class="kel-titik">tongkat bengkok</span></div>
-                        <div class="kel-item"><span class="kel-huruf">م</span><span class="kel-nama">Mim</span><span class="kel-titik">lingkaran penuh</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ن</span><span class="kel-nama">Nun</span><span class="kel-titik">1 titik di atas</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ه</span><span class="kel-nama">Ha'</span><span class="kel-titik">2 lingkaran</span></div>
-                        <div class="kel-item"><span class="kel-huruf">و</span><span class="kel-nama">Waw</span><span class="kel-titik">⚡tidak sambung kiri</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ي</span><span class="kel-nama">Ya'</span><span class="kel-titik">2 titik di bawah</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ا</span><span class="kel-nama">Alif</span><span class="kel-titik">⚡tidak sambung kiri</span></div>
-                        <div class="kel-item"><span class="kel-huruf">ء</span><span class="kel-nama">Hamzah</span><span class="kel-titik">kepala 'ain</span></div>
-                    </div>
-                </div>
+                <div id="voiceResult" class="voice-result" style="display:none"></div>
             </div>
         </div>
-    </section>
 
-    <!-- 📖 TAJWID -->
-    <section class="tajwid" id="tajwid">
-        <div class="container">
-            <div class="section-header">
-                <h2>Ilmu <span class="highlight">Tajwid</span></h2>
-                <p>Pahami dulu, baru praktik — hukum bacaan yang bikin ngaji makin fasih</p>
-            </div>
-            <div class="tajwid-grid">
-                <div onclick="alert('🔊 Qolqolah — huruf yang dibaca memantul')" class="tajwid-card">
-                    <span class="tajwid-icon">🔊</span>
-                    <h3>Qolqolah</h3>
-                    <p class="tajwid-desc">Dibaca memantul</p>
-                    <div class="tajwid-letters">ق ط ب ج د</div>
-                </div>
-                <div onclick="alert('➡️ Mad artinya memanjang. Tahan 2–6 ketukan.')" class="tajwid-card">
-                    <span class="tajwid-icon">➡️</span>
-                    <h3>Mad (Panjang)</h3>
-                    <p class="tajwid-desc">Bacaan yang dipanjangkan</p>
-                    <div class="tajwid-letters">ا و ي</div>
-                </div>
-                <div onclick="alert('〰️ Ghunnah — dengung dari hidung seperti "ng"')" class="tajwid-card">
-                    <span class="tajwid-icon">〰️</span>
-                    <h3>Ghunnah</h3>
-                    <p class="tajwid-desc">Bacaan dengung</p>
-                    <div class="tajwid-letters">ن م</div>
-                </div>
-                <div onclick="alert('Sukun — huruf bertanda ﹿ dibaca mati/berhenti')" class="tajwid-card">
-                    <span class="tajwid-icon">🟢</span>
-                    <h3>Sukun</h3>
-                    <p class="tajwid-desc">Huruf mati</p>
-                    <div class="tajwid-example">الْحَمْدُ</div>
-                </div>
-                <div onclick="alert('Idzhar — dibaca jelas, Nun sukun bertemu huruf tenggorokan')" class="tajwid-card">
-                    <span class="tajwid-icon">👆</span>
-                    <h3>Idzhar</h3>
-                    <p class="tajwid-desc">Dibaca jelas</p>
-                    <div class="tajwid-letters">ء ه ع ح غ خ</div>
-                </div>
-                <div onclick="alert('Idghom — melebur dengan dengung')" class="tajwid-card">
-                    <span class="tajwid-icon">🔄</span>
-                    <h3>Idghom</h3>
-                    <p class="tajwid-desc">Melebur dengan dengung</p>
-                    <div class="tajwid-letters">ي ر م ل و ن</div>
-                </div>
-                <div onclick="alert('Iqlab — Nun sukun bertemu ب, berubah jadi bunyi "mim"')" class="tajwid-card">
-                    <span class="tajwid-icon">🚫</span>
-                    <h3>Iqlab</h3>
-                    <p class="tajwid-desc">Berubah bunyi</p>
-                    <div class="tajwid-letters">ب</div>
-                </div>
-                <div onclick="alert('Alif Lam Qomariah — dibaca jelas')" class="tajwid-card">
-                    <span class="tajwid-icon">🌙</span>
-                    <h3>Al Lam Qomariah</h3>
-                    <p class="tajwid-desc">Dibaca JELAS</p>
-                    <div class="tajwid-example">الْقَمَرُ</div>
-                </div>
-                <div onclick="alert('Alif Lam Syamsiah — dibaca melebur')" class="tajwid-card">
-                    <span class="tajwid-icon">☀️</span>
-                    <h3>Al Lam Syamsiah</h3>
-                    <p class="tajwid-desc">Dibaca MELEBUR</p>
-                    <div class="tajwid-example">الشَّمْسُ</div>
-                </div>
+        <!-- Detail Panel -->
+        <div id="detailPanel" class="detail-panel" style="display:none">
+            <div class="detail-backdrop" onclick="tutupDetail()"></div>
+            <div class="detail-card">
+                <button class="detail-close" onclick="tutupDetail()">✕</button>
+                <div id="detailContent"></div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- 🎯 FITUR -->
-    <section class="fitur" id="fitur">
-        <div class="container">
-            <div class="section-header">
-                <h2>Kenapa <span class="highlight">Ngaji Yuk!</span>?</h2>
-                <p>Belajar Al-Qur'an jadi lebih seru dengan fitur-fitur ini</p>
-            </div>
-            <div class="fitur-grid">
-                <div class="fitur-card">
-                    <span class="fitur-icon">🔤</span>
-                    <h3>Huruf Hijaiyah</h3>
-                    <p>29 huruf lengkap dengan bentuk sambung dan kelompoknya</p>
-                </div>
-                <div class="fitur-card">
-                    <span class="fitur-icon">🎵</span>
-                    <h3>Ilmu Tajwid</h3>
-                    <p>Qolqolah, Mad, Ghunnah, dan lainnya — belajar jadi mudah</p>
-                </div>
-                <div class="fitur-card">
-                    <span class="fitur-icon">🎙️</span>
-                    <h3>AI Voice Coach</h3>
-                    <p>Baca ayat, AI yang dengarkan dan kasih feedback langsung</p>
-                </div>
-                <div class="fitur-card">
-                    <span class="fitur-icon">🗺️</span>
-                    <h3>Peta Belajar</h3>
-                    <p>Progress terlihat jelas — dari huruf sampai bisa baca surah</p>
-                </div>
-                <div class="fitur-card">
-                    <span class="fitur-icon">🔥</span>
-                    <h3>Streak & XP</h3>
-                    <p>Semangat belajar setiap hari dengan sistem poin</p>
-                </div>
-                <div class="fitur-card">
-                    <span class="fitur-icon">📖</span>
-                    <h3>Baca Surah</h3>
-                    <p>Praktik langsung baca surah-surah pendek Juz 30</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 📖 SURAH -->
-    <section class="surah" id="surah">
-        <div class="container">
-            <div class="section-header">
-                <h2>Baca <span class="highlight">Surah</span></h2>
-                <p>Juz 30 — mulai dari yang pendek-pendek dulu</p>
-            </div>
-            <div class="surah-list">
-                <div class="surah-item">
-                    <span class="surah-num">1</span>
-                    <div class="surah-info">
-                        <span class="surah-name">Al-Fatihah</span>
-                        <span class="surah-ayat">7 ayat</span>
-                    </div>
-                    <span class="surah-status selesai">✅ Selesai</span>
-                </div>
-                <div class="surah-item">
-                    <span class="surah-num">2</span>
-                    <div class="surah-info">
-                        <span class="surah-name">Al-Ikhlas</span>
-                        <span class="surah-ayat">4 ayat</span>
-                    </div>
-                    <span class="surah-status aktif">▶ Mulai</span>
-                </div>
-                <div class="surah-item">
-                    <span class="surah-num">3</span>
-                    <div class="surah-info">
-                        <span class="surah-name">Al-Falaq</span>
-                        <span class="surah-ayat">5 ayat</span>
-                    </div>
-                    <span class="surah-status">🔒</span>
-                </div>
-                <div class="surah-item">
-                    <span class="surah-num">4</span>
-                    <div class="surah-info">
-                        <span class="surah-name">An-Nas</span>
-                        <span class="surah-ayat">6 ayat</span>
-                    </div>
-                    <span class="surah-status">🔒</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⭐ VOICE COACH PREVIEW -->
-    <section class="voice" id="voice">
-        <div class="container">
-            <div class="voice-card">
-                <div class="voice-content">
-                    <span class="voice-icon">🎙️</span>
-                    <h2>AI <span class="highlight">Voice Coach</span></h2>
-                    <p>Baca ayat, AI yang dengar dan kasih skor — koreksi makhraj, mad, dan qolqolah secara real-time!</p>
-                    <div class="voice-skor">
-                        <div class="skor-item">
-                            <span class="skor-nilai">85</span>
-                            <span class="skor-label">Makhraj</span>
-                        </div>
-                        <div class="skor-item">
-                            <span class="skor-nilai">60</span>
-                            <span class="skor-label">Mad</span>
-                        </div>
-                        <div class="skor-item">
-                            <span class="skor-nilai">40</span>
-                            <span class="skor-label">Qolqolah</span>
-                        </div>
-                    </div>
-                    <button class="btn-primary" onclick="alert('🔊 Coba rekam — fitur penuh sedang dikembangkan!')">🎤 Coba Rekam</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 💎 HARGA -->
-    <section class="harga" id="harga">
-        <div class="container">
-            <div class="section-header">
-                <h2>Gratis <span class="highlight">Selamanya</span></h2>
-                <p>Ngaji Yuk! 100% gratis untuk anak Indonesia</p>
-            </div>
-            <div class="pricing-card featured">
-                <div class="pricing-badge">🎉 GRATIS</div>
-                <h3 style="font-size:1.4rem;font-weight:700;color:var(--emerald);font-family:Georgia,serif;margin-bottom:0.3rem">Ngaji Yuk!</h3>
-                <div class="price">
-                    <span class="price-amount">Rp 0</span>
-                    <span class="price-period">/selamanya</span>
-                </div>
-                <ul class="pricing-features">
-                    <li>✅ 29 Huruf Hijaiyah + Kelompok</li>
-                    <li>✅ Ilmu Tajwid Lengkap</li>
-                    <li>✅ AI Voice Coach</li>
-                    <li>✅ Peta Belajar & Progress</li>
-                    <li>✅ Baca Surah Juz 30</li>
-                </ul>
-                <button class="btn-primary btn-full" onclick="alert('🚀 Aplikasi penuh sedang dikembangkan!')">Mulai Belajar →</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 📞 CTA -->
-    <section class="cta">
-        <div class="container">
-            <h2>Siap mulai belajar <span class="highlight">Ngaji Yuk!</span>?</h2>
-            <p>Dibuat dengan ❤️ oleh Abah Gandhi untuk anak-anak Indonesia</p>
-            <div class="cta-buttons">
-                <button class="btn-primary" onclick="alert('🚀 Coming soon!')">Mulai Sekarang →</button>
-                <a href="https://wa.me/6281928880602" class="btn-wa">💬 WhatsApp Abah</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⭐ FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="logo-icon">📖</span>
-                    <span class="logo-text">Ngaji Yuk!</span>
-                    <p>Belajar Al-Qur'an itu menyenangkan</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Menu</h4>
-                    <ul>
-                        <li><a href="#kelompok">Huruf</a></li>
-                        <li><a href="#tajwid">Tajwid</a></li>
-                        <li><a href="#fitur">Fitur</a></li>
-                        <li><a href="#surah">Surah</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Kontak</h4>
-                    <ul>
-                        <li><a href="https://wa.me/6281928880602">WhatsApp</a></li>
-                        <li><a href="mailto:ganststudio@gmail.com">Email</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2026 Ngaji Yuk! — Dibuat dengan ❤️ untuk anak-anak Indonesia</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/script.js"></script>
+    <audio id="audioPlayer" style="display:none"></audio>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
