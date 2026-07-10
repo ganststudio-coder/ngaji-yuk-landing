@@ -144,6 +144,46 @@ function playCurrentHuruf() {
     }, { once: true });
 }
 
+// 🔗 Data huruf sambung
+const sambungData = {
+    ba:   { awal: 'بـ', tengah: 'ـبـ', akhir: 'ـب', contoh: ['بِسْمِ', 'نَبِيّ', 'كِتَاب'] },
+    ta:   { awal: 'تـ', tengah: 'ـتـ', akhir: 'ـت', contoh: ['تِلْمِيذ', 'مَتْن', 'بَيْت'] },
+    tsa:  { awal: 'ثـ', tengah: 'ـثـ', akhir: 'ـث', contoh: ['ثَعْلَب', 'يَثْرِب', 'حَدِيث'] },
+    jim:  { awal: 'جـ', tengah: 'ـجـ', akhir: 'ـج', contoh: ['جَبَل', 'مَجْلِس', 'فَرَج'] },
+    ha:   { awal: 'حـ', tengah: 'ـحـ', akhir: 'ـح', contoh: ['حَسَن', 'مَحْمَد', 'فَتَّاح'] },
+};
+
+function showSambung(huruf) {
+    const data = sambungData[huruf];
+    if (!data) return;
+
+    // Update button active
+    document.querySelectorAll('.sambung-btn').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.querySelector(`.sambung-btn[onclick="showSambung('${huruf}')"]`);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    // Animate update
+    const cards = document.querySelectorAll('.sambung-card');
+    cards.forEach(c => {
+        c.style.transform = 'scale(0.95)';
+        c.style.opacity = '0.5';
+    });
+
+    setTimeout(() => {
+        document.getElementById('sambungAwal').textContent = data.awal;
+        document.getElementById('sambungTengah').textContent = data.tengah;
+        document.getElementById('sambungAkhir').textContent = data.akhir;
+        document.getElementById('sambungAwalKata').textContent = 'contoh: ' + data.contoh[0];
+        document.getElementById('sambungTengahKata').textContent = 'contoh: ' + data.contoh[1];
+        document.getElementById('sambungAkhirKata').textContent = 'contoh: ' + data.contoh[2];
+
+        cards.forEach(c => {
+            c.style.transform = 'scale(1)';
+            c.style.opacity = '1';
+        });
+    }, 200);
+}
+
 // ✨ Inisialisasi setelah halaman siap
 document.addEventListener('DOMContentLoaded', function() {
     // Init huruf

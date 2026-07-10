@@ -124,6 +124,43 @@
         </div>
     </section>
 
+    <!-- 🔗 HURUF SAMBUNG -->
+    <section class="sambung" id="sambung">
+        <div class="container">
+            <div class="section-header">
+                <h2>Huruf <span class="highlight">Sambung</span></h2>
+                <p>Bentuk huruf berubah saat disambung — lihat contohnya!</p>
+            </div>
+            <div class="sambung-demo">
+                <div class="sambung-selector">
+                    <button class="sambung-btn active" onclick="showSambung('ba')">ب</button>
+                    <button class="sambung-btn" onclick="showSambung('ta')">ت</button>
+                    <button class="sambung-btn" onclick="showSambung('tsa')">ث</button>
+                    <button class="sambung-btn" onclick="showSambung('jim')">ج</button>
+                    <button class="sambung-btn" onclick="showSambung('ha')">ح</button>
+                </div>
+                <div class="sambung-cards" id="sambungCards">
+                    <div class="sambung-card">
+                        <span class="sambung-posisi">Awal</span>
+                        <div class="sambung-huruf" id="sambungAwal">بـ</div>
+                        <span class="sambung-contoh" id="sambungAwalKata">kata: بِسْمِ</span>
+                    </div>
+                    <div class="sambung-card">
+                        <span class="sambung-posisi">Tengah</span>
+                        <div class="sambung-huruf" id="sambungTengah">ـبـ</div>
+                        <span class="sambung-contoh" id="sambungTengahKata">kata: نَبِيّ</span>
+                    </div>
+                    <div class="sambung-card">
+                        <span class="sambung-posisi">Akhir</span>
+                        <div class="sambung-huruf" id="sambungAkhir">ـب</div>
+                        <span class="sambung-contoh" id="sambungAkhirKata">kata: كِتَاب</span>
+                    </div>
+                </div>
+                <p class="sambung-tip">💡 <strong>Tips:</strong> Huruf hijaiyah berubah bentuk tergantung posisinya dalam kata!</p>
+            </div>
+        </div>
+    </section>
+
     <!-- 📚 LEVEL -->
     <section class="level" id="level">
         <div class="container">
