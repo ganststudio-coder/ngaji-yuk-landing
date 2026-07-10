@@ -31,13 +31,13 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--emerald);c
 
 /* ── SLIDE CONTAINER ── */
 .slide-container{
-    display:flex;height:100vh;overflow-x:hidden;overflow-y:hidden;
+    display:flex;height:100vh;overflow-x:auto;overflow-y:hidden;
     scroll-behavior:smooth;scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;transition:transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    -webkit-overflow-scrolling:touch;
 }
 .slide-page{
     min-width:100vw;min-height:100vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
-    scroll-snap-align:start;background:var(--cream);
+    scroll-snap-align:start;background:var(--cream);flex-shrink:0;
 }
 
 /* ── DASHBOARD ── */

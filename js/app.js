@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded',function(){
         var idx=PAGE_IDS.indexOf(id);
         if(idx<0)return;
         currentPageIdx=idx;
-        slideContainer.style.transform='translateX(-'+(idx*100)+'vw)';
+        slideContainer.scrollTo({left:idx*window.innerWidth,behavior:'smooth'});
     };
     window.slideBack=function(){
         if(currentPageIdx>0){
             currentPageIdx--;
-            slideContainer.style.transform='translateX(-'+(currentPageIdx*100)+'vw)';
+            slideContainer.scrollTo({left:currentPageIdx*window.innerWidth,behavior:'smooth'});
         }
     };
 
