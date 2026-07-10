@@ -26,7 +26,7 @@ const hurufData = [
     { huruf: 'ق', nama: 'Qof', audio: 'audio/21_qaf.mp3', ket: 'Lingkaran dengan dua ekor', makhraj: 'Pangkal lidah & langit-langit belakang' },
     { huruf: 'ك', nama: 'Kaf', audio: 'audio/22_kaf.mp3', ket: 'Seperti pohon tegak', makhraj: 'Pangkal lidah (depan Qof)' },
     { huruf: 'ل', nama: 'Lam', audio: 'audio/23_lam.mp3', ket: 'Seperti tongkat bengkok', makhraj: 'Ujung lidah & langit-langit' },
-    { huruf: 'م', nama: 'Mim', audio: 'audio/24_nun.mp3', ket: 'Lingkaran penuh', makhraj: 'Kedua bibir' },
+    { huruf: 'م', nama: 'Mim', audio: 'audio/27_mim.mp3', ket: 'Lingkaran penuh', makhraj: 'Kedua bibir' },
     { huruf: 'ن', nama: 'Nun', audio: 'audio/24_nun.mp3', ket: 'Seperti mangkuk, titik di atas', makhraj: 'Ujung lidah & langit-langit' },
     { huruf: 'ه', nama: "Ha'", audio: 'audio/29_ha_besar.mp3', ket: 'Dua lingkaran menyatu', makhraj: 'Ujung tenggorokan' },
     { huruf: 'و', nama: 'Waw', audio: 'audio/28_waw.mp3', ket: 'Seperti koma terbalik', makhraj: 'Bibir dibulatkan' },
@@ -36,7 +36,6 @@ const hurufData = [
 ];
 
 let currentIndex = 0;
-let currentAudio = null;
 
 // 🎯 Fungsi Navigasi
 function updateHuruf() {
@@ -81,9 +80,9 @@ function nextHuruf() {
             btnPlay.textContent = '🔊 Dengarkan';
             btnPlay.style.opacity = '1';
         }
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio = null;
+        if (window.ngajiAudio) {
+            window.ngajiAudio.pause();
+            window.ngajiAudio = null;
         }
     }
 }
@@ -97,14 +96,14 @@ function prevHuruf() {
             btnPlay.textContent = '🔊 Dengarkan';
             btnPlay.style.opacity = '1';
         }
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio = null;
+        if (window.ngajiAudio) {
+            window.ngajiAudio.pause();
+            window.ngajiAudio = null;
         }
     }
 }
 
-// 🔊 Fungsi Play Audio
+// 🔇 Fungsi Play Audio
 function playCurrentHuruf() {
     const data = hurufData[currentIndex];
     const btnPlay = document.querySelector('.btn-play');
@@ -115,32 +114,34 @@ function playCurrentHuruf() {
     }
     
     // Hentikan audio sebelumnya
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio = null;
+    if (window.ngajiAudio) {
+        window.ngajiAudio.pause();
     }
     
+    // Buat audio baru setiap kali
     const audio = new Audio(data.audio);
-    currentAudio = audio;
+    window.ngajiAudio = audio;
     
     btnPlay.textContent = '⏹️ Memutar...';
     btnPlay.style.opacity = '0.7';
+    btnPlay.disabled = true;
     
     audio.play().then(() => {
         btnPlay.textContent = '🔊 Putar Ulang';
         btnPlay.style.opacity = '1';
+        btnPlay.disabled = false;
     }).catch((err) => {
-        console.log('Audio error:', err);
-        btnPlay.textContent = '🔊 Dengarkan';
+        console.log('Audio error:', err.name, err.message);
+        btnPlay.textContent = '🔊 Coba Lagi';
         btnPlay.style.opacity = '1';
-        alert('Maaf, audio belum bisa diputar di sini. Coba buka di browser lain ya!');
+        btnPlay.disabled = false;
     });
     
     audio.addEventListener('ended', () => {
         btnPlay.textContent = '🔊 Dengarkan';
         btnPlay.style.opacity = '1';
-        currentAudio = null;
-    });
+        btnPlay.disabled = false;
+    }, { once: true });
 }
 
 // ✨ Inisialisasi setelah halaman siap
