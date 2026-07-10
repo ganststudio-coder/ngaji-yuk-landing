@@ -6,21 +6,19 @@
     <title>Ngaji Yuk! — Belajar Al-Qur'an</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- ⭐ SPLASH SCREEN -->
-<div id="splash" class="screen active">
+<!-- SCREEN 1: SPLASH -->
+<div id="s1" class="screen active">
     <div class="splash-bg">
-        <div class="circle c1"></div>
-        <div class="circle c2"></div>
-        <div class="circle c3"></div>
-        <div class="circle c4"></div>
+        <div class="circle c1"></div><div class="circle c2"></div>
+        <div class="circle c3"></div><div class="circle c4"></div>
         <div class="circle c5"></div>
     </div>
-    <div class="splash-content">
+    <div class="splash-inner">
         <div class="splash-icon">📖</div>
         <h1 class="splash-title">Ngaji Yuk!</h1>
         <p class="splash-sub">Belajar Al-Qur'an itu menyenangkan</p>
@@ -29,26 +27,68 @@
     </div>
 </div>
 
-<!-- ⭐ HURUF HIJAIYAH -->
-<div id="huruf" class="screen" style="display:none">
-    <div class="header-huruf">
-        <div class="header-inner">
+<!-- SCREEN 2: KOTAK PILIHAN KELUARGA -->
+<div id="s2" class="screen">
+    <div class="s2-header">
+        <div class="s2-header-inner">
             <h1>🔤 Huruf Hijaiyah</h1>
-            <p>Tap huruf untuk belajar — tap 🔊 untuk dengar VO</p>
+            <p>Pilih keluarga huruf yang mau dipelajari</p>
         </div>
     </div>
-
-    <div class="body-huruf" id="bodyHuruf"></div>
-
-    <!-- Detail Panel -->
-    <div id="detailPanel" class="detail-layer" style="display:none">
-        <div class="detail-backdrop" onclick="tutupDetail()"></div>
-        <div class="detail-card">
-            <div class="detail-head">
-                <button class="detail-close" onclick="tutupDetail()">✕</button>
+    <div class="s2-body">
+        <div class="pilihan-container">
+            <div class="pilihan-card" id="pilihTitik">
+                <div class="pilihan-badge" style="background:#1B5E3B">🔵</div>
+                <h2>Keluarga Huruf Titik</h2>
+                <p>20 huruf dengan titik — kelompokkan berdasarkan jumlah & posisi titik</p>
+                <div class="pilihan-preview">ب ت ث · ج ح خ · د ذ · ر ز · س ش · ص ض · ط ظ · ع غ · ف ق</div>
+                <span class="pilihan-total">20 huruf · 9 kelompok</span>
             </div>
-            <div id="detailContent" class="detail-body"></div>
+            <div class="pilihan-card" id="pilihUnik">
+                <div class="pilihan-badge" style="background:#6A1B9A">🟣</div>
+                <h2>Keluarga Huruf Unik</h2>
+                <p>9 huruf istimewa — bentuknya beda dari yang lain</p>
+                <div class="pilihan-preview">ا · ل · م · ه · و · ك · ن · ي · ء</div>
+                <span class="pilihan-total">9 huruf · 1 kelompok</span>
+            </div>
         </div>
+    </div>
+</div>
+
+<!-- SCREEN 3: PILIH KELOMPOK -->
+<div id="s3" class="screen">
+    <div class="s2-header">
+        <div class="s2-header-inner">
+            <button class="btn-back" id="backKePilihan">←</button>
+            <h1 id="s3Title">Kelompok</h1>
+            <p id="s3Sub">Pilih kelompok huruf yang mau dipelajari</p>
+        </div>
+    </div>
+    <div class="s2-body">
+        <div id="kelompokContainer" class="kelompok-list"></div>
+    </div>
+</div>
+
+<!-- SCREEN 4: BELAJAR HURUF -->
+<div id="s4" class="screen">
+    <div class="s2-header">
+        <div class="s2-header-inner">
+            <button class="btn-back" id="backKeKelompok">←</button>
+            <h1 id="s4Title">Kelompok 1</h1>
+            <p id="s4Sub">Tap huruf untuk belajar</p>
+        </div>
+    </div>
+    <div class="s2-body">
+        <div id="hurufGrid" class="huruf-grid-full"></div>
+    </div>
+</div>
+
+<!-- DETAIL PANEL -->
+<div id="detailPanel" class="detail-layer" style="display:none">
+    <div class="detail-backdrop" onclick="tutupDetail()"></div>
+    <div class="detail-card">
+        <div class="detail-head"><button class="detail-close" onclick="tutupDetail()">✕</button></div>
+        <div id="detailContent" class="detail-body"></div>
     </div>
 </div>
 
