@@ -1,5 +1,5 @@
 // ════════════════════════════════════════
-// NGAJI YUK! — App v7 (Slide with CSS classes)
+// NGAJI YUK! — App v8 (Simple Slide)
 // ════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded',function(){
@@ -13,52 +13,84 @@ document.addEventListener('DOMContentLoaded',function(){
     var currentKeluarga=null;
     var recState='idle';
     var recTimer=null;
+    var currentPage='pageMenu';
+    var prevPage=null;
 
-    // ── PAGE MAP ──
-    var PAGE_IDS=['pageMenu','pagePilihKeluarga','pageKelompok','pageHuruf',
-                   'pageTalaqqi','pageRecord','pageTajwid','pageHTQ','pageSambung'];
-    var pageHistory=['pageMenu']; // stack
+    var PAGE_ORDER=['pageMenu','pagePilihKeluarga','pageKelompok','pageHuruf',
+                    'pageTalaqqi','pageRecord','pageTajwid','pageHTQ','pageSambung'];
 
-    function setActivePage(id){
-        PAGE_IDS.forEach(function(pid){
-            var el=document.getElementById(pid);
-            if(!el)return;
-            if(pid===id){
-                el.classList.add('active');
-                el.classList.remove('left');
+    // ── INIT: hide all pages, show pageMenu ──
+    function initSlide(){
+        PAGE_ORDER.forEach(function(id){
+            var el=document.getElementById(id);
+            if(!el) return;
+            el.style.transition='none';
+            if(id==='pageMenu'){
+                el.style.transform='translateX(0)';
+                el.style.display='block';
             } else {
-                // check if this page was the previous one (animate left)
-                if(pageHistory.length>=2 && pid===pageHistory[pageHistory.length-2]){
-                    el.classList.remove('active');
-                    el.classList.add('left');
-                } else {
-                    el.classList.remove('active');
-                    el.classList.remove('left');
-                }
+                el.style.transform='translateX(100%)';
+                el.style.display='none';
             }
+        });
+        // Force reflow then enable transitions
+        void document.body.offsetHeight;
+        PAGE_ORDER.forEach(function(id){
+            var el=document.getElementById(id);
+            if(el) el.style.transition='transform 0.35s cubic-bezier(0.22,1,0.36,1)';
         });
     }
 
+    // ── Slide to page (forward) ──
     window.slideTo=function(id){
-        if(document.getElementById(id)){
-            pageHistory.push(id);
-            setActivePage(id);
-        }
+        var el=document.getElementById(id);
+        var cur=document.getElementById(currentPage);
+        if(!el||!cur||id===currentPage||el.style.display==='block') return;
+
+        prevPage=currentPage;
+        currentPage=id;
+
+        // Hide current off to left
+        cur.style.transform='translateX(-100%)';
+
+        // Show new page
+        el.style.display='block';
+        el.style.transform='translateX(100%)';
+        // Force reflow
+        void el.offsetHeight;
+        el.style.transform='translateX(0)';
     };
 
+    // ── Slide back ──
     window.slideBack=function(){
-        if(pageHistory.length>1){
-            pageHistory.pop(); // remove current
-            var prev=pageHistory[pageHistory.length-1];
-            setActivePage(prev);
-        }
+        if(!prevPage) return;
+        var cur=document.getElementById(currentPage);
+        var prev=document.getElementById(prevPage);
+        if(!cur||!prev) return;
+
+        // Current slides right
+        cur.style.transform='translateX(100%)';
+
+        // Previous comes from left
+        prev.style.display='block';
+        prev.style.transform='translateX(-100%)';
+        void prev.offsetHeight;
+        prev.style.transform='translateX(0)';
+
+        // After animation, hide current
+        setTimeout(function(){
+            cur.style.display='none';
+        },350);
+
+        currentPage=prevPage;
+        prevPage=null;
     };
 
     // ── SPLASH ──
     document.getElementById('btnMulai').addEventListener('click',function(){
         document.getElementById('splash').style.display='none';
         document.getElementById('dashLayer').style.display='block';
-        setActivePage('pageMenu');
+        initSlide();
     });
 
     // ── Build menu cards ──
@@ -80,14 +112,61 @@ document.addEventListener('DOMContentLoaded',function(){
         menuGrid.appendChild(card);
     });
 
-    // also link "▶ Mulai Belajar" to scroll to menu
-    document.querySelector('.btn-lanjut-dash')&&
-        document.querySelector('.btn-lanjut-dash').addEventListener('click',function(){
-            // scroll dashboard body to menu cards
-            document.querySelector('.dash-body').scrollIntoView({behavior:'smooth'});
-        });
+    // scroll to menu on "Mulai Belajar"
+    var btnLanjut=document.querySelector('.btn-lanjut-dash');
+    if(btnLanjut) btnLanjut.addEventListener('click',function(){
+        document.querySelector('.dash-body').scrollIntoView({behavior:'smooth'});
+    });
 
     // ── HURUF ──
+    // back buttons
+    var backMap={
+        pagePilihKeluarga:'pageMenu',pageKelompok:'pagePilihKeluarga',pageHuruf:'pageKelompok',
+        pageTalaqqi:'pageMenu',pageRecord:'pageTalaqqi',
+        pageTajwid:'pageMenu',pageHTQ:'pageMenu',pageSambung:'pageMenu'
+    };
+    // We handle back with slideBack(), but need to reset prevPage correctly
+    document.querySelectorAll('.btn-back').forEach(function(btn){
+        btn.addEventListener('click',function(){
+            // Find which page this back button is in
+            var page=btn.closest('.slide-page');
+            if(!page) {slideBack();return;}
+            // If we're going back to menu, set prevPage correctly
+            if(backMap[page.id]){
+                // For direct menu pages, chain history
+                prevPage=currentPage;
+                currentPage=backMap[page.id];
+                // But actually slideBack just goes one step
+                // Let's use navigateBack which handles the map
+                navigateBack(page.id);
+            } else {
+                slideBack();
+            }
+        });
+    });
+
+    function navigateBack(fromPage){
+        var target=backMap[fromPage];
+        if(!target) return;
+        var cur=document.getElementById(fromPage);
+        var targetEl=document.getElementById(target);
+        if(!cur||!targetEl) return;
+
+        cur.style.transform='translateX(100%)';
+        targetEl.style.display='block';
+        // If target is already visible, just hide current
+        if(targetEl.style.transform==='translateX(0)'||targetEl.style.display==='block'){
+            // already shown
+        } else {
+            targetEl.style.transform='translateX(-100%)';
+            void targetEl.offsetHeight;
+            targetEl.style.transform='translateX(0)';
+        }
+        setTimeout(function(){cur.style.display='none';},350);
+        currentPage=target;
+        prevPage=null;
+    }
+
     window.pilihTitik=function(){
         currentKeluarga='titik';
         renderKelompok(KELOMPOK_TITIK,'Keluarga Huruf Titik');
@@ -96,6 +175,7 @@ document.addEventListener('DOMContentLoaded',function(){
         currentKeluarga='unik';
         renderKelompok(KELOMPOK_UNIK,'Keluarga Huruf Unik');
     };
+
     function renderKelompok(data,title){
         document.getElementById('kelTitle').textContent=title;
         kelompokContainer.innerHTML='';
@@ -110,7 +190,11 @@ document.addEventListener('DOMContentLoaded',function(){
             kelompokContainer.appendChild(item);
         });
         slideTo('pageKelompok');
+        // Set back chain
+        backMap.pageKelompok='pagePilihKeluarga';
+        backMap.pageHuruf='pageKelompok';
     }
+
     function renderHuruf(kel,idx){
         document.getElementById('hurufTitle').textContent=currentKeluarga==='titik'?'Kelompok '+(idx+1):'Kelompok Unik';
         hurufGrid.innerHTML='';
@@ -154,9 +238,9 @@ document.addEventListener('DOMContentLoaded',function(){
         recState='idle';
         document.getElementById('btnRecord').textContent='🎤';
         slideTo('pageRecord');
+        backMap.pageRecord='pageTalaqqi';
     };
 
-    // Record button
     document.getElementById('btnRecord').addEventListener('click',function(){
         var btn=this;
         if(recState==='idle'){
@@ -192,13 +276,13 @@ document.addEventListener('DOMContentLoaded',function(){
         if(isGood){
             result.innerHTML='<div class="rr-score"><div class="rr-stars">⭐⭐⭐</div>'
                 +'<div class="rr-text">Masya Allah, bagus!</div></div>'
-                +'<div class="rr-actions"><button class="rr-ulang" onclick="document.getElementById(\'recordResult\').style.display=\'none\';document.getElementById(\'btnRecord\').textContent=\'🎤\';recState=\'idle\'">🎙️ Lagi</button>'
-                +'<button class="rr-lanjut" onclick="slideBack()">← Kembali</button></div>';
+                +'<div class="rr-actions"><button class="rr-ulang" onclick="this.parentElement.parentElement.style.display=\'none\';document.getElementById(\'btnRecord\').textContent=\'🎤\';recState=\'idle\'">🎙️ Lagi</button>'
+                +'<button class="rr-lanjut" onclick="navigateBack(\'pageRecord\')">← Kembali</button></div>';
         } else {
             result.innerHTML='<div class="rr-score"><div class="rr-stars">⭐</div>'
                 +'<div class="rr-text">Ayo coba lagi!</div></div>'
-                +'<div class="rr-actions"><button class="rr-ulang" onclick="document.getElementById(\'recordResult\').style.display=\'none\';document.getElementById(\'btnRecord\').textContent=\'🎤\';recState=\'idle\'">🎙️ Coba Lagi</button>'
-                +'<button class="rr-lanjut" onclick="slideBack()">← Kembali</button></div>';
+                +'<div class="rr-actions"><button class="rr-ulang" onclick="this.parentElement.parentElement.style.display=\'none\';document.getElementById(\'btnRecord\').textContent=\'🎤\';recState=\'idle\'">🎙️ Coba Lagi</button>'
+                +'<button class="rr-lanjut" onclick="navigateBack(\'pageRecord\')">← Kembali</button></div>';
         }
         result.style.display='block';
     }
@@ -212,14 +296,12 @@ document.addEventListener('DOMContentLoaded',function(){
             var item=document.createElement('div');
             item.className='sambung-item';
             var html='<div style="font-weight:700;font-size:0.9rem;color:var(--emerald);font-family:Georgia,serif">'
-                +d.char+' '+d.nama+' <span style="font-size:0.7rem;color:var(--gray);font-weight:400">('+d.kelompok+')</span></div>';
+                +d.char+' '+d.nama+' <span style="font-size:0.7rem;color:var(--gray)">('+d.kelompok+')</span></div>';
             html+='<div class="sambung-row">';
             html+='<span class="sambung-label">Awal:</span><span class="sambung-bentuk">'+(d.awal||'—')+'</span>';
             html+='<span class="sambung-label">Tengah:</span><span class="sambung-bentuk">'+(d.tengah||'—')+'</span>';
             html+='<span class="sambung-label">Akhir:</span><span class="sambung-bentuk">'+(d.akhir||'—')+'</span>';
-            if(d.sambung==='tidak_kiri'){
-                html+='<span class="sambung-hint">⚠️ Tak bisa sambung kiri</span>';
-            }
+            if(d.sambung==='tidak_kiri') html+='<span class="sambung-hint">⚠️ Tak bisa sambung kiri</span>';
             html+='</div>';
             item.innerHTML=html;
             sambungList.appendChild(item);
@@ -255,4 +337,7 @@ document.addEventListener('DOMContentLoaded',function(){
         detailContent.innerHTML=html;
         detailPanel.style.display='flex';
     }
+
+    // Expose navigateBack globally for onclick handlers
+    window.navigateBack=navigateBack;
 });
