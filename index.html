@@ -61,6 +61,65 @@
                     <button class="btn-lanjut-dash">▶ Mulai Belajar</button>
                 </div>
                 <div class="menu-grid5" id="menuGrid"></div>
+
+                <!-- SECTION BARU: Dukung Ngaji Yuk (terpisah dari menu utama) -->
+                <div class="dukung-section">
+                    <h3 class="dukung-title">💚 Dukung Ngaji Yuk</h3>
+                    <p class="dukung-sub">Aplikasi gratis 100% · donasi sukarela untuk dakwah</p>
+                    <div class="dukung-grid">
+                        <div class="dukung-card donasi" onclick="showPage('pageDonasi')">
+                            <span class="dukung-icon">🤲</span>
+                            <span class="dukung-label">Donasi</span>
+                        </div>
+                        <div class="dukung-card wa" onclick="showPage('pageWA')">
+                            <span class="dukung-icon">💬</span>
+                            <span class="dukung-label">WhatsApp</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE DONASI (baru) -->
+        <div id="pageDonasi" class="slide-page" style="display:none">
+            <div class="s-header">
+                <div class="s-header-inner">
+                    <button class="btn-back" onclick="showPage('pageMenu')">←</button>
+                    <h1>🤲 Donasi</h1>
+                    <p>Modal dakwah, pahala mengalir</p>
+                </div>
+            </div>
+            <div class="s-body">
+                <div class="donasi-card-big">
+                    <div class="donasi-bismillah">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْم</div>
+                    <p class="donasi-text">Ngaji Yuk! gratis 100% untuk semua. Jika Abah/Adik berkenan, bantu kami menyebarkan dakwah lewat donasi sukarela. 💚</p>
+                    <div class="donasi-rek">
+                        <div class="rek-row"><span class="rek-bank">🏦 BNI</span><span class="rek-no">1868368301</span></div>
+                        <div class="rek-atas">a.n. <strong>Gandi Sugiarto</strong></div>
+                        <button class="rek-copy" onclick="navigator.clipboard.writeText('1868368301');this.textContent='✅ Tersalin'">📋 Salin No. Rekening</button>
+                    </div>
+                    <a class="donasi-wa-btn" href="https://wa.me/6281928880602?text=Assalamu%27alaikum%2C%20saya%20sudah%20donasi%20untuk%20Ngaji%20Yuk%20ya%20kak" target="_blank">💬 Konfirmasi lewat WA</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE WHATSAPP (baru) -->
+        <div id="pageWA" class="slide-page" style="display:none">
+            <div class="s-header">
+                <div class="s-header-inner">
+                    <button class="btn-back" onclick="showPage('pageMenu')">←</button>
+                    <h1>💬 WhatsApp</h1>
+                    <p>Sapa kami langsung</p>
+                </div>
+            </div>
+            <div class="s-body">
+                <div class="wa-card-big">
+                    <div class="wa-avatar">👤</div>
+                    <div class="wa-name">Gandi Sugiarto</div>
+                    <div class="wa-note">Admin Ngaji Yuk · Siap bantu pertanyaan & feedback</div>
+                    <a class="wa-call-btn" href="https://wa.me/6281928880602" target="_blank">💬 Chat ke 0819-2888-0602</a>
+                    <p class="wa-hours">⏰ Aktif: 08.00 – 20.00 WIB</p>
+                </div>
             </div>
         </div>
 
