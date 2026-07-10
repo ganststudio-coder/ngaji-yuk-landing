@@ -1,36 +1,56 @@
 // ════════════════════════════════════════
-// NGAJI YUK! — App v6 (Slide Pages)
+// NGAJI YUK! — App v7 (Slide with CSS classes)
 // ════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded',function(){
     var audioPlayer=document.getElementById('audioPlayer');
     var detailPanel=document.getElementById('detailPanel');
     var detailContent=document.getElementById('detailContent');
-    var slideContainer=document.getElementById('slideContainer');
     var kelompokContainer=document.getElementById('kelompokContainer');
     var hurufGrid=document.getElementById('hurufGrid');
     var sambungList=document.getElementById('sambungList');
     var currentAudio=null;
     var currentKeluarga=null;
-    var currentPageIdx=0;
     var recState='idle';
     var recTimer=null;
 
     // ── PAGE MAP ──
     var PAGE_IDS=['pageMenu','pagePilihKeluarga','pageKelompok','pageHuruf',
                    'pageTalaqqi','pageRecord','pageTajwid','pageHTQ','pageSambung'];
+    var pageHistory=['pageMenu']; // stack
 
-    // ── Slide functions ──
+    function setActivePage(id){
+        PAGE_IDS.forEach(function(pid){
+            var el=document.getElementById(pid);
+            if(!el)return;
+            if(pid===id){
+                el.classList.add('active');
+                el.classList.remove('left');
+            } else {
+                // check if this page was the previous one (animate left)
+                if(pageHistory.length>=2 && pid===pageHistory[pageHistory.length-2]){
+                    el.classList.remove('active');
+                    el.classList.add('left');
+                } else {
+                    el.classList.remove('active');
+                    el.classList.remove('left');
+                }
+            }
+        });
+    }
+
     window.slideTo=function(id){
-        var idx=PAGE_IDS.indexOf(id);
-        if(idx<0)return;
-        currentPageIdx=idx;
-        slideContainer.scrollTo({left:idx*window.innerWidth,behavior:'smooth'});
+        if(document.getElementById(id)){
+            pageHistory.push(id);
+            setActivePage(id);
+        }
     };
+
     window.slideBack=function(){
-        if(currentPageIdx>0){
-            currentPageIdx--;
-            slideContainer.scrollTo({left:currentPageIdx*window.innerWidth,behavior:'smooth'});
+        if(pageHistory.length>1){
+            pageHistory.pop(); // remove current
+            var prev=pageHistory[pageHistory.length-1];
+            setActivePage(prev);
         }
     };
 
@@ -38,6 +58,7 @@ document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('btnMulai').addEventListener('click',function(){
         document.getElementById('splash').style.display='none';
         document.getElementById('dashLayer').style.display='block';
+        setActivePage('pageMenu');
     });
 
     // ── Build menu cards ──
@@ -58,6 +79,13 @@ document.addEventListener('DOMContentLoaded',function(){
         card.addEventListener('click',function(){slideTo(m.page);});
         menuGrid.appendChild(card);
     });
+
+    // also link "▶ Mulai Belajar" to scroll to menu
+    document.querySelector('.btn-lanjut-dash')&&
+        document.querySelector('.btn-lanjut-dash').addEventListener('click',function(){
+            // scroll dashboard body to menu cards
+            document.querySelector('.dash-body').scrollIntoView({behavior:'smooth'});
+        });
 
     // ── HURUF ──
     window.pilihTitik=function(){
@@ -135,7 +163,7 @@ document.addEventListener('DOMContentLoaded',function(){
             recState='recording';
             btn.classList.add('recording');
             btn.textContent='🔴';
-            document.getElementById('recordStatus').textContent='Merekam... baca yang ditampilkan!';
+            document.getElementById('recordStatus').textContent='Merekam...';
             document.getElementById('recordResult').style.display='none';
             recTimer=setTimeout(function(){
                 recState='analyzing';
@@ -164,12 +192,12 @@ document.addEventListener('DOMContentLoaded',function(){
         if(isGood){
             result.innerHTML='<div class="rr-score"><div class="rr-stars">⭐⭐⭐</div>'
                 +'<div class="rr-text">Masya Allah, bagus!</div></div>'
-                +'<div class="rr-actions"><button class="rr-ulang" onclick="document.getElementById(\'recordResult\').style.display=\'none\'">🎙️ Lagi</button>'
+                +'<div class="rr-actions"><button class="rr-ulang" onclick="document.getElementById(\'recordResult\').style.display=\'none\';document.getElementById(\'btnRecord\').textContent=\'🎤\';recState=\'idle\'">🎙️ Lagi</button>'
                 +'<button class="rr-lanjut" onclick="slideBack()">← Kembali</button></div>';
         } else {
             result.innerHTML='<div class="rr-score"><div class="rr-stars">⭐</div>'
                 +'<div class="rr-text">Ayo coba lagi!</div></div>'
-                +'<div class="rr-actions"><button class="rr-ulang" onclick="document.getElementById(\'recordResult\').style.display=\'none\'">🎙️ Coba Lagi</button>'
+                +'<div class="rr-actions"><button class="rr-ulang" onclick="document.getElementById(\'recordResult\').style.display=\'none\';document.getElementById(\'btnRecord\').textContent=\'🎤\';recState=\'idle\'">🎙️ Coba Lagi</button>'
                 +'<button class="rr-lanjut" onclick="slideBack()">← Kembali</button></div>';
         }
         result.style.display='block';
