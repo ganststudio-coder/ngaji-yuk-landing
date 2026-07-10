@@ -11,192 +11,247 @@
 </head>
 <body>
 
-<!-- SPLASH -->
-<div id="s1" class="screen active">
-    <div class="splash-bg"><div class="circle c1"></div><div class="circle c2"></div><div class="circle c3"></div><div class="circle c4"></div><div class="circle c5"></div></div>
-    <div class="splash-inner">
-        <div class="splash-icon">📖</div>
-        <h1 class="splash-title">Ngaji Yuk!</h1>
-        <p class="splash-sub">Belajar Al-Qur'an itu menyenangkan</p>
-        <button id="btnMulai" class="btn-gold">Mulai Sekarang →</button>
-        <p class="splash-kredit">Aplikasi dibuat oleh <strong>Ganst-Studio</strong></p>
+<div id="appRoot">
+    <!-- LAYER 1: SPLASH -->
+    <div id="splash" class="layer splash-layer">
+        <div class="splash-bg">
+            <div class="circle c1"></div><div class="circle c2"></div>
+            <div class="circle c3"></div><div class="circle c4"></div>
+            <div class="circle c5"></div>
+        </div>
+        <div class="splash-inner">
+            <div class="splash-icon">📖</div>
+            <h1 class="splash-title">Ngaji Yuk!</h1>
+            <p class="splash-sub">Belajar Al-Qur'an itu menyenangkan</p>
+            <button id="btnMulai" class="btn-gold">Mulai Sekarang →</button>
+            <p class="splash-kredit">Aplikasi dibuat oleh <strong>Ganst-Studio</strong></p>
+        </div>
     </div>
-</div>
 
-<!-- DASHBOARD -->
-<div id="s2" class="screen">
-    <div class="dash-header">
-        <div class="dash-header-inner">
-            <div class="dash-top">
-                <div>
-                    <div class="dash-salam">Assalamu'alaikum 👋</div>
-                    <div class="dash-nama">Hei, Sahabat Kecil!</div>
+    <!-- LAYER 2: DASHBOARD + SLIDE CONTAINER -->
+    <div id="dashLayer" class="layer" style="display:none">
+        <!-- SLIDE CONTAINER -->
+        <div id="slideContainer" class="slide-container">
+            <!-- PAGE 0: Dashboard / Menu Cards -->
+            <div class="slide-page" id="pageMenu">
+                <div class="dash-header">
+                    <div class="dash-header-inner">
+                        <div class="dash-top">
+                            <div>
+                                <div class="dash-salam">Assalamu'alaikum 👋</div>
+                                <div class="dash-nama">Hei, Sahabat Kecil!</div>
+                            </div>
+                            <div class="dash-stats">
+                                <div class="dash-streak">🔥 <span>3</span> hari</div>
+                                <div class="dash-xp"><span>240</span> XP</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="dash-stats">
-                    <div class="dash-streak">🔥 <span id="streakCount">3</span> hari</div>
-                    <div class="dash-xp"><span id="xpCount">240</span> XP</div>
+                <div class="dash-body">
+                    <div class="map-card">
+                        <h3 class="map-title">🗺️ Peta Perjalananmu</h3>
+                        <div class="map-visual">
+                            <div class="map-node done" style="left:50%;top:78%">🔤</div>
+                            <div class="map-node done" style="left:28%;top:63%">✨</div>
+                            <div class="map-node active" style="left:58%;top:48%">🔗</div>
+                            <div class="map-node locked" style="left:32%;top:33%">🎵</div>
+                            <div class="map-node locked" style="left:62%;top:18%">📖</div>
+                            <svg class="map-line" viewBox="0 0 200 160"><path d="M100,128 Q68,110 56,100 Q70,85 116,78 Q90,62 64,52 Q100,38 124,30" stroke="#E0E0E0" stroke-width="2" fill="none" stroke-dasharray="4,3"/><path d="M100,128 Q68,110 56,100" stroke="#D4A853" stroke-width="2" fill="none"/></svg>
+                        </div>
+                        <button class="btn-lanjut-dash" onclick="slideTo('menu')">▶ Mulai Belajar</button>
+                    </div>
+                    <div class="menu-grid5" id="menuGrid"></div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="dash-body">
-        <div class="map-card">
-            <h3 class="map-title">🗺️ Peta Perjalananmu</h3>
-            <div class="map-visual">
-                <div class="map-node done" style="left:50%;top:78%">🔤</div>
-                <div class="map-node done" style="left:28%;top:63%">✨</div>
-                <div class="map-node active" style="left:58%;top:48%">🔗</div>
-                <div class="map-node locked" style="left:32%;top:33%">🎵</div>
-                <div class="map-node locked" style="left:62%;top:18%">📖</div>
-                <svg class="map-line" viewBox="0 0 200 160"><path d="M100,128 Q68,110 56,100 Q70,85 116,78 Q90,62 64,52 Q100,38 124,30" stroke="#E0E0E0" stroke-width="2" fill="none" stroke-dasharray="4,3"/><path d="M100,128 Q68,110 56,100" stroke="#D4A853" stroke-width="2" fill="none"/></svg>
+
+            <!-- PAGE 1: Pilih Keluarga -->
+            <div class="slide-page" id="pagePilihKeluarga">
+                <div class="s-header">
+                    <div class="s-header-inner">
+                        <button class="btn-back" onclick="slideBack()">←</button>
+                        <h1>🔤 Huruf Hijaiyah</h1>
+                        <p>Pilih keluarga huruf</p>
+                    </div>
+                </div>
+                <div class="s-body">
+                    <div class="pilihan-container">
+                        <div class="pilihan-card" onclick="pilihTitik()">
+                            <div class="pilihan-badge" style="background:#1B5E3B">🔵</div>
+                            <h2>Keluarga Huruf Titik</h2>
+                            <p>20 huruf — 9 kelompok</p>
+                            <div class="pilihan-preview">ب ت ث · ج ح خ · د ذ · ر ز · س ش · ص ض · ط ظ · ع غ · ف ق</div>
+                            <span class="pilihan-total">20 huruf</span>
+                        </div>
+                        <div class="pilihan-card" onclick="pilihUnik()">
+                            <div class="pilihan-badge" style="background:#6A1B9A">🟣</div>
+                            <h2>Keluarga Huruf Unik</h2>
+                            <p>9 huruf istimewa</p>
+                            <div class="pilihan-preview">ا · ل · م · ه · و · ك · ن · ي · ء</div>
+                            <span class="pilihan-total">9 huruf</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button id="btnLanjut" class="btn-lanjut-dash">▶ Mulai Belajar</button>
+
+            <!-- PAGE 2: Kelompok -->
+            <div class="slide-page" id="pageKelompok">
+                <div class="s-header">
+                    <div class="s-header-inner">
+                        <button class="btn-back" onclick="slideBack()">←</button>
+                        <h1 id="kelTitle">Kelompok</h1>
+                        <p>Pilih kelompok</p>
+                    </div>
+                </div>
+                <div class="s-body"><div id="kelompokContainer" class="kelompok-list"></div></div>
+            </div>
+
+            <!-- PAGE 3: Belajar Huruf -->
+            <div class="slide-page" id="pageHuruf">
+                <div class="s-header">
+                    <div class="s-header-inner">
+                        <button class="btn-back" onclick="slideBack()">←</button>
+                        <h1 id="hurufTitle">Huruf</h1>
+                        <p>Tap untuk belajar</p>
+                    </div>
+                </div>
+                <div class="s-body"><div id="hurufGrid" class="huruf-grid-full"></div></div>
+            </div>
+
+            <!-- PAGE 4: Talaqqi Pilihan -->
+            <div class="slide-page" id="pageTalaqqi">
+                <div class="s-header">
+                    <div class="s-header-inner">
+                        <button class="btn-back" onclick="slideBack()">←</button>
+                        <h1>🎙️ Talaqqi</h1>
+                        <p>Pilih yang mau direkam</p>
+                    </div>
+                </div>
+                <div class="s-body">
+                    <div class="talaqqi-grid">
+                        <div class="talaqqi-card" onclick="openTalaqqi('makhraj')">
+                            <span class="talaqqi-icon">🔤</span>
+                            <h3>Huruf & Makhraj</h3>
+                            <p>Latih makhraj 29 huruf</p>
+                        </div>
+                        <div class="talaqqi-card" onclick="openTalaqqi('harakat')">
+                            <span class="talaqqi-icon">✨</span>
+                            <h3>Harakat</h3>
+                            <p>Fathah, Kasrah, Dammah</p>
+                        </div>
+                        <div class="talaqqi-card" onclick="openTalaqqi('tanwin')">
+                            <span class="talaqqi-icon">〽️</span>
+                            <h3>Tanwin</h3>
+                            <p>Fathah Tanwin, Kasrah Tanwin, Dammah Tanwin</p>
+                        </div>
+                        <div class="talaqqi-card" onclick="openTalaqqi('qolqolah')">
+                            <span class="talaqqi-icon">🔊</span>
+                            <h3>Qolqolah</h3>
+                            <p>ق ط ب ج د</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 5: Talaqqi Record -->
+            <div class="slide-page" id="pageRecord">
+                <div class="s-header">
+                    <div class="s-header-inner">
+                        <button class="btn-back" onclick="slideBack()">←</button>
+                        <h1 id="recTitle">Rekam</h1>
+                        <p>Tap mic untuk mulai</p>
+                    </div>
+                </div>
+                <div class="s-body">
+                    <div class="record-area">
+                        <div id="recordPreview" class="record-preview"></div>
+                        <button id="btnRecord" class="btn-record">🎤</button>
+                        <p id="recordStatus" class="record-status">Tap mic</p>
+                    </div>
+                    <div id="recordResult" class="record-result" style="display:none"></div>
+                </div>
+            </div>
+
+            <!-- PAGE 6: Tajwid -->
+            <div class="slide-page" id="pageTajwid">
+                <div class="s-header">
+                    <div class="s-header-inner">
+                        <button class="btn-back" onclick="slideBack()">←</button>
+                        <h1>🎵 Ilmu Tajwid</h1>
+                        <p>Pahami dulu, baru praktik</p>
+                    </div>
+                </div>
+                <div class="s-body">
+                    <div class="tajwid-grid">
+                        <div class="tajwid-card" onclick="alert('🔊 Qolqolah — dibaca memantul')"><span class="tajwid-icon">🔊</span><h3>Qolqolah</h3><div class="tajwid-letters">ق ط ب ج د</div></div>
+                        <div class="tajwid-card" onclick="alert('➡️ Mad — dipanjangkan 2-6 ketukan')"><span class="tajwid-icon">➡️</span><h3>Mad</h3><div class="tajwid-letters">ا و ي</div></div>
+                        <div class="tajwid-card" onclick="alert('〰️ Ghunnah — dengung dari hidung')"><span class="tajwid-icon">〰️</span><h3>Ghunnah</h3><div class="tajwid-letters">ن م</div></div>
+                        <div class="tajwid-card" onclick="alert('🟢 Sukun — huruf mati')"><span class="tajwid-icon">🟢</span><h3>Sukun</h3><div class="tajwid-letters">الْحَمْدُ</div></div>
+                        <div class="tajwid-card" onclick="alert('👆 Idzhar — dibaca jelas')"><span class="tajwid-icon">👆</span><h3>Idzhar</h3><div class="tajwid-letters">ء ه ع ح غ خ</div></div>
+                        <div class="tajwid-card" onclick="alert('🔄 Idghom — melebur')"><span class="tajwid-icon">🔄</span><h3>Idghom</h3><div class="tajwid-letters">ي ر م ل و ن</div></div>
+                        <div class="tajwid-card" onclick="alert('🚫 Iqlab — jadi bunyi mim')"><span class="tajwid-icon">🚫</span><h3>Iqlab</h3><div class="tajwid-letters">ب</div></div>
+                        <div class="tajwid-card" onclick="alert('🌙 Al Lam Qomariah — JELAS')"><span class="tajwid-icon">🌙</span><h3>Qomariah</h3><div class="tajwid-letters">الْقَمَرُ</div></div>
+                        <div class="tajwid-card" onclick="alert('☀️ Al Lam Syamsiah — MELEBUR')"><span class="tajwid-icon">☀️</span><h3>Syamsiah</h3><div class="tajwid-letters">الشَّمْسُ</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 7: Harakat Tanwin Qolqolah -->
+            <div class="slide-page" id="pageHTQ">
+                <div class="s-header">
+                    <div class="s-header-inner">
+                        <button class="btn-back" onclick="slideBack()">←</button>
+                        <h1>🔠 Harakat, Tanwin & Qolqolah</h1>
+                        <p>Tap untuk belajar</p>
+                    </div>
+                </div>
+                <div class="s-body">
+                    <div class="htq-section">
+                        <h3 class="htq-section-title">✨ Harakat</h3>
+                        <div class="htq-grid">
+                            <div class="htq-card" onclick="alert('Fathah (ﹰ) — bunyi A')"><span class="htq-char">بَ</span><span class="htq-label">Fathah</span></div>
+                            <div class="htq-card" onclick="alert('Kasrah (ﹺ) — bunyi I')"><span class="htq-char">بِ</span><span class="htq-label">Kasrah</span></div>
+                            <div class="htq-card" onclick="alert('Dammah (ﹸ) — bunyi U')"><span class="htq-char">بُ</span><span class="htq-label">Dammah</span></div>
+                        </div>
+                    </div>
+                    <div class="htq-section">
+                        <h3 class="htq-section-title">〽️ Tanwin</h3>
+                        <div class="htq-grid">
+                            <div class="htq-card" onclick="alert('Fathah Tanwin (ﹰً) — bunyi An')"><span class="htq-char">بً</span><span class="htq-label">Fathah Tanwin</span></div>
+                            <div class="htq-card" onclick="alert('Kasrah Tanwin (ﹴٍ) — bunyi In')"><span class="htq-char">بٍ</span><span class="htq-label">Kasrah Tanwin</span></div>
+                            <div class="htq-card" onclick="alert('Dammah Tanwin (ﹲٌ) — bunyi Un')"><span class="htq-char">بٌ</span><span class="htq-label">Dammah Tanwin</span></div>
+                        </div>
+                    </div>
+                    <div class="htq-section">
+                        <h3 class="htq-section-title">🔊 Qolqolah</h3>
+                        <div class="htq-q-grid">
+                            <div class="htq-card q" onclick="alert('Qof — qolqolah')"><span class="htq-char">ق</span><span class="htq-label">Qof</span></div>
+                            <div class="htq-card q" onclick="alert('Tho — qolqolah')"><span class="htq-char">ط</span><span class="htq-label">Tho'</span></div>
+                            <div class="htq-card q" onclick="alert('Ba — qolqolah')"><span class="htq-char">ب</span><span class="htq-label">Ba'</span></div>
+                            <div class="htq-card q" onclick="alert('Jim — qolqolah')"><span class="htq-char">ج</span><span class="htq-label">Jim</span></div>
+                            <div class="htq-card q" onclick="alert('Dal — qolqolah')"><span class="htq-char">د</span><span class="htq-label">Dal</span></div>
+                        </div>
+                        <p class="htq-tips">💡 Ingat qolqolah: <strong>"QATBU JADDI"</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 8: Huruf Sambung -->
+            <div class="slide-page" id="pageSambung">
+                <div class="s-header">
+                    <div class="s-header-inner">
+                        <button class="btn-back" onclick="slideBack()">←</button>
+                        <h1>🔗 Huruf Sambung</h1>
+                        <p>Bentuk awal, tengah, akhir</p>
+                    </div>
+                </div>
+                <div class="s-body"><div id="sambungList" class="sambung-list"></div></div>
+            </div>
         </div>
-        <div class="menu-grid5" id="menuGrid"></div>
     </div>
 </div>
 
-<!-- HURUF HIJAIYAH → Pilihan Keluarga -->
-<div id="s3" class="screen">
-    <div class="s-header">
-        <div class="s-header-inner">
-            <button class="btn-back" id="back3">←</button>
-            <h1>🔤 Huruf Hijaiyah</h1>
-            <p>Pilih keluarga huruf yang mau dipelajari</p>
-        </div>
-    </div>
-    <div class="s-body">
-        <div class="pilihan-container">
-            <div class="pilihan-card" id="pilihTitik">
-                <div class="pilihan-badge" style="background:#1B5E3B">🔵</div>
-                <h2>Keluarga Huruf Titik</h2>
-                <p>20 huruf — dikelompokkan berdasarkan bentuk</p>
-                <div class="pilihan-preview">ب ت ث · ج ح خ · د ذ · ر ز · س ش · ص ض · ط ظ · ع غ · ف ق</div>
-                <span class="pilihan-total">20 huruf · 9 kelompok</span>
-            </div>
-            <div class="pilihan-card" id="pilihUnik">
-                <div class="pilihan-badge" style="background:#6A1B9A">🟣</div>
-                <h2>Keluarga Huruf Unik</h2>
-                <p>9 huruf istimewa — bentuknya berbeda</p>
-                <div class="pilihan-preview">ا · ل · م · ه · و · ك · ن · ي · ء</div>
-                <span class="pilihan-total">9 huruf · 1 kelompok</span>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Kelompok -->
-<div id="s4" class="screen">
-    <div class="s-header"><div class="s-header-inner"><button class="btn-back" id="back4">←</button><h1 id="s4Title"></h1><p id="s4Sub">Pilih kelompok yang mau dipelajari</p></div></div>
-    <div class="s-body"><div id="kelompokContainer" class="kelompok-list"></div></div>
-</div>
-<!-- Belajar Huruf -->
-<div id="s5" class="screen">
-    <div class="s-header"><div class="s-header-inner"><button class="btn-back" id="back5">←</button><h1 id="s5Title"></h1><p id="s5Sub">Tap huruf untuk belajar</p></div></div>
-    <div class="s-body"><div id="hurufGrid" class="huruf-grid-full"></div></div>
-</div>
-
-<!-- TALAQQI -->
-<div id="s6" class="screen">
-    <div class="s-header"><div class="s-header-inner"><button class="btn-back" id="back6">←</button><h1>🎙️ Talaqqi</h1><p>Pilih yang mau direkam & dinilai</p></div></div>
-    <div class="s-body">
-        <div class="talaqqi-grid">
-            <div class="talaqqi-card" data-mode="makhraj">
-                <span class="talaqqi-icon">🔤</span>
-                <h3>Huruf & Makhraj</h3>
-                <p>Latih makhraj 29 huruf hijaiyah</p>
-            </div>
-            <div class="talaqqi-card" data-mode="harakat">
-                <span class="talaqqi-icon">✨</span>
-                <h3>Harakat</h3>
-                <p>Fathah, Kasrah, Dammah</p>
-            </div>
-            <div class="talaqqi-card" data-mode="tanwin">
-                <span class="talaqqi-icon">〽️</span>
-                <h3>Tanwin</h3>
-                <p>Fathah Tanwin, Kasrah Tanwin, Dammah Tanwin</p>
-            </div>
-            <div class="talaqqi-card" data-mode="qolqolah">
-                <span class="talaqqi-icon">🔊</span>
-                <h3>Qolqolah</h3>
-                <p>5 huruf qolqolah: ق ط ب ج د</p>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Talaqqi Record -->
-<div id="s7" class="screen">
-    <div class="s-header"><div class="s-header-inner"><button class="btn-back" id="back7">←</button><h1 id="s7Title">Rekam</h1><p id="s7Sub">Tap mic untuk mulai merekam</p></div></div>
-    <div class="s-body">
-        <div id="recordArea" class="record-area">
-            <div id="recordPreview" class="record-preview"></div>
-            <button id="btnRecord" class="btn-record">🎤</button>
-            <p id="recordStatus" class="record-status">Tap mic untuk mulai merekam</p>
-        </div>
-        <div id="recordResult" class="record-result" style="display:none"></div>
-    </div>
-</div>
-
-<!-- HARAKAT TANWIN QOLQOLAH -->
-<div id="s8" class="screen">
-    <div class="s-header"><div class="s-header-inner"><button class="btn-back" id="back8">←</button><h1>🔠 Harakat, Tanwin & Qolqolah</h1><p>Tap untuk belajar</p></div></div>
-    <div class="s-body">
-        <div class="htq-section">
-            <h3 class="htq-section-title">✨ Harakat</h3>
-            <div class="htq-grid">
-                <div class="htq-card" onclick="alert('Fathah (ﹰ) — bunyi A, seperti Ba')"><span class="htq-char">بَ</span><span class="htq-label">Fathah</span></div>
-                <div class="htq-card" onclick="alert('Kasrah (ﹺ) — bunyi I, seperti Bi')"><span class="htq-char">بِ</span><span class="htq-label">Kasrah</span></div>
-                <div class="htq-card" onclick="alert('Dammah (ﹸ) — bunyi U, seperti Bu')"><span class="htq-char">بُ</span><span class="htq-label">Dammah</span></div>
-            </div>
-        </div>
-        <div class="htq-section">
-            <h3 class="htq-section-title">〽️ Tanwin</h3>
-            <div class="htq-grid">
-                <div class="htq-card" onclick="alert('Fathah Tanwin (ﹰً) — bunyi An')"><span class="htq-char">بً</span><span class="htq-label">Fathah Tanwin</span></div>
-                <div class="htq-card" onclick="alert('Kasrah Tanwin (ﹴٍ) — bunyi In')"><span class="htq-char">بٍ</span><span class="htq-label">Kasrah Tanwin</span></div>
-                <div class="htq-card" onclick="alert('Dammah Tanwin (ﹲٌ) — bunyi Un')"><span class="htq-char">بٌ</span><span class="htq-label">Dammah Tanwin</span></div>
-            </div>
-        </div>
-        <div class="htq-section">
-            <h3 class="htq-section-title">🔊 Qolqolah</h3>
-            <div class="htq-q-grid">
-                <div class="htq-card q"><span class="htq-char">ق</span><span class="htq-label">Qof</span></div>
-                <div class="htq-card q"><span class="htq-char">ط</span><span class="htq-label">Tho'</span></div>
-                <div class="htq-card q"><span class="htq-char">ب</span><span class="htq-label">Ba'</span></div>
-                <div class="htq-card q"><span class="htq-char">ج</span><span class="htq-label">Jim</span></div>
-                <div class="htq-card q"><span class="htq-char">د</span><span class="htq-label">Dal</span></div>
-            </div>
-            <p class="htq-tips">💡 Qolqolah dibaca memantul saat sukun atau waqaf. Ingat: <strong>"QATBU JADDI"</strong></p>
-        </div>
-    </div>
-</div>
-
-<!-- HURUF SAMBUNG -->
-<div id="s9" class="screen">
-    <div class="s-header"><div class="s-header-inner"><button class="btn-back" id="back9">←</button><h1>🔗 Huruf Sambung</h1><p>Lihat bentuk awal, tengah, akhir</p></div></div>
-    <div class="s-body">
-        <div id="sambungList" class="sambung-list"></div>
-    </div>
-</div>
-
-<!-- TAJWID -->
-<div id="s10" class="screen">
-    <div class="s-header"><div class="s-header-inner"><button class="btn-back" id="back10">←</button><h1>🎵 Ilmu Tajwid</h1><p>Pahami dulu, baru praktik</p></div></div>
-    <div class="s-body">
-        <div class="tajwid-grid">
-            <div class="tajwid-card" onclick="alert('🔊 Qolqolah — huruf yang dibaca memantul saat sukun')"><span class="tajwid-icon">🔊</span><h3>Qolqolah</h3><div class="tajwid-letters">ق ط ب ج د</div></div>
-            <div class="tajwid-card" onclick="alert('➡️ Mad — bacaan yang dipanjangkan 2-6 ketukan')"><span class="tajwid-icon">➡️</span><h3>Mad</h3><div class="tajwid-letters">ا و ي</div></div>
-            <div class="tajwid-card" onclick="alert('〰️ Ghunnah — dengung dari hidung seperti "ng"')"><span class="tajwid-icon">〰️</span><h3>Ghunnah</h3><div class="tajwid-letters">ن م</div></div>
-            <div class="tajwid-card" onclick="alert('🟢 Sukun — huruf bertanda ﹿ dibaca mati/berhenti')"><span class="tajwid-icon">🟢</span><h3>Sukun</h3><div class="tajwid-letters">الْحَمْدُ</div></div>
-            <div class="tajwid-card" onclick="alert('👆 Idzhar — dibaca jelas, Nun mati bertemu huruf tenggorokan')"><span class="tajwid-icon">👆</span><h3>Idzhar</h3><div class="tajwid-letters">ء ه ع ح غ خ</div></div>
-            <div class="tajwid-card" onclick="alert('🔄 Idghom — melebur dengan dengung')"><span class="tajwid-icon">🔄</span><h3>Idghom</h3><div class="tajwid-letters">ي ر م ل و ن</div></div>
-            <div class="tajwid-card" onclick="alert('🚫 Iqlab — Nun sukun bertemu ب, jadi bunyi mim')"><span class="tajwid-icon">🚫</span><h3>Iqlab</h3><div class="tajwid-letters">ب</div></div>
-            <div class="tajwid-card" onclick="alert('🌙 Alif Lam Qomariah — dibaca JELAS')"><span class="tajwid-icon">🌙</span><h3>Al Lam Qomariah</h3><div class="tajwid-letters">الْقَمَرُ</div></div>
-            <div class="tajwid-card" onclick="alert('☀️ Alif Lam Syamsiah — dibaca MELEBUR')"><span class="tajwid-icon">☀️</span><h3>Al Lam Syamsiah</h3><div class="tajwid-letters">الشَّمْسُ</div></div>
-        </div>
-    </div>
-</div>
-
-<!-- DETAIL PANEL -->
+<!-- DETAIL PANEL (slide up, stays above everything) -->
 <div id="detailPanel" class="detail-layer" style="display:none">
     <div class="detail-backdrop" onclick="tutupDetail()"></div>
     <div class="detail-card">
