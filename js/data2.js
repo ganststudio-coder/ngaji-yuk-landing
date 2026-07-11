@@ -78,7 +78,7 @@ var HURUF_DATA = {
     nun:{char:'ن',name:'Nun',audio:'audio/24_nun.mp3',bunyi:'N',qolqolah:false,sambung:'bisa',makhraj:'Ujung lidah ke langit',contoh:'نُور',harakat_audio:'audio/harakat/24.na-ni-nu.mp3'},
     ha_besar:{char:'ه',name:"Ha'",audio:'audio/29_ha_besar.mp3',bunyi:'H',qolqolah:false,sambung:'bisa',makhraj:'Akhir tenggorokan',contoh:'هُدَى',harakat_audio:'audio/harakat/26.ha-hi-hu.mp3'},
     waw:{char:'و',name:'Waw',audio:'audio/28_waw.mp3',bunyi:'W',qolqolah:false,sambung:'tidak_kiri',makhraj:'Kedua bibir membulat',contoh:'وَحْدَة',harakat_audio:'audio/harakat/25.wa-wi-wu.mp3'},
-    ya:{char:'ي',name:"Ya'",audio:'audio/25_ya.mp3',bunyi:'Y',qolqolah:false,sambung:'bisa',makhraj:'Tengah lidah ke langit',contoh:'يَمِين',harakat_audio:'audio/harakat/29-lam-alif-laa-lii-luu.mp3'},
+    ya:{char:'ي',name:"Ya'",audio:'audio/25_ya.mp3',bunyi:'Y',qolqolah:false,sambung:'bisa',makhraj:'Tengah lidah ke langit',contoh:'يَمِين'},
     alif:{char:'ا',name:'Alif',audio:'audio/26_alif.mp3',bunyi:'A',qolqolah:false,sambung:'tidak_kiri',makhraj:'Rongga tenggorokan',contoh:'أَحَد',harakat_audio:'audio/harakat/28-alif-a-i-u.mp3'},
     hamzah:{char:'ء',name:'Hamzah',audio:'audio/30_hamzah.mp3',bunyi:"'A",qolqolah:false,sambung:'tidak_kiri',makhraj:'Ujung tenggorokan',contoh:'سَأَل',harakat_audio:'audio/harakat/27-hamza-a-i-u.mp3'}
 };
