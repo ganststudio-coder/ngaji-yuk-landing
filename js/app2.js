@@ -213,6 +213,7 @@
             + '<div class="detail-box green"><h4>📝 Makhraj</h4><p>' + d.makhraj + '</p></div>';
         if (d.qolqolah) h += '<div class="detail-box orange"><h4>💡 Qolqolah</h4><p>Dibaca memantul saat sukun atau waqaf.</p></div>';
         if (d.sambung === 'tidak_kiri') h += '<div class="detail-box gray"><h4>⚠️ Tak Bisa Sambung Kiri</h4><p>Hanya bentuk isolated dan akhir.</p></div>';
+        if (d.harakat_audio) h += '<button class="detail-harakat-btn" onclick="playAudio(\'' + d.harakat_audio + '\')">🔊 Dengarkan Harakat</button>';
         h += '<div class="detail-contoh"><div class="detail-contoh-label">Contoh</div><div class="detail-contoh-ayat">' + d.contoh + '</div></div>';
         detailContent.innerHTML = h;
         detailPanel.style.display = 'flex';

@@ -185,6 +185,8 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--emerald);c
 .detail-box.orange h4{color:#E65100}
 .detail-box.gray{background:#ECEFF1;border:1px solid #B0BEC5}
 .detail-box.gray h4{color:#546E7A}
+.detail-harakat-btn{display:block;width:90%;margin:0.8rem auto;padding:0.7rem;background:linear-gradient(135deg,#F57C00,#FF9800);color:#fff;border:0;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer}
+.detail-harakat-btn:hover{opacity:0.9}
 .detail-contoh{background:var(--cream);border-radius:12px;padding:12px;text-align:center}
 .detail-contoh-label{font-size:0.7rem;color:var(--gray);margin-bottom:4px}
 .detail-contoh-ayat{font-size:1.4rem;font-weight:700;color:var(--emerald);direction:rtl;font-family:'Noto Naskh Arabic',serif;line-height:1.6}
