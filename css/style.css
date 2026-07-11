@@ -243,6 +243,16 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--emerald);c
 .htq-praktek-btn{display:inline-block;background:linear-gradient(135deg,#F57C00,#FF9800);color:#fff;padding:0.7rem 1.8rem;border-radius:12px;font-weight:700;font-size:0.95rem;text-decoration:none;cursor:pointer}
 .htq-praktek-btn:hover{opacity:0.9}
 
+/* ── HARAKAT GRID ── */
+.harakat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0.5rem 0}
+.harakat-card{background:var(--white);border-radius:12px;padding:0.6rem 0.3rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);cursor:pointer;position:relative;overflow:hidden;transition:transform 0.15s}
+.harakat-card:active{transform:scale(0.95)}
+.harakat-card .harakat-char{display:block;font-size:1.6rem;line-height:1.4;color:var(--dark)}
+.harakat-card .harakat-name{display:block;font-size:0.65rem;color:var(--gray)}
+.harakat-card .harakat-play-icon{position:absolute;top:2px;right:4px;font-size:0.65rem;opacity:0.5}
+.harakat-card.dim{opacity:0.4;cursor:default}
+@media(max-width:340px){.harakat-grid{grid-template-columns:repeat(3,1fr)}}
+
 @media(max-width:400px){
     .splash-title{font-size:2rem}
     .splash-icon{width:76px;height:76px;font-size:2.2rem}

@@ -27,6 +27,7 @@
             if (el) el.style.display = (p === id) ? 'block' : 'none';
         });
         window.scrollTo(0, 0);
+        if (id === 'pageHTQ' && window.generateHarakatGrid) generateHarakatGrid();
     };
 
     // Splash
@@ -213,19 +214,38 @@
             + '<div class="detail-box green"><h4>📝 Makhraj</h4><p>' + d.makhraj + '</p></div>';
         if (d.qolqolah) h += '<div class="detail-box orange"><h4>💡 Qolqolah</h4><p>Dibaca memantul saat sukun atau waqaf.</p></div>';
         if (d.sambung === 'tidak_kiri') h += '<div class="detail-box gray"><h4>⚠️ Tak Bisa Sambung Kiri</h4><p>Hanya bentuk isolated dan akhir.</p></div>';
-        if (d.harakat_audio) h += '<button class="detail-harakat-btn" onclick="playAudio(\'' + d.harakat_audio + '\')">🔊 Dengarkan Harakat</button>';
         h += '<div class="detail-contoh"><div class="detail-contoh-label">Contoh</div><div class="detail-contoh-ayat">' + d.contoh + '</div></div>';
         detailContent.innerHTML = h;
         detailPanel.style.display = 'flex';
     }
 
-    // SAMPLE HARAKAT
-    window.sampleHarakat = function(type) {
-        var audioFile = 'audio/harakat/1.ba-bi-bu.mp3';
-        var ap = document.getElementById('audioPlayer');
-        if (type === 'fathah') ap.src = audioFile;
-        else if (type === 'kasrah') ap.src = audioFile;
-        else if (type === 'dammah') ap.src = audioFile;
-        ap.play();
+    // HARAKAT GRID — generate 29 huruf
+    window.generateHarakatGrid = function() {
+        var G = document.getElementById('harakatGrid');
+        if (!G) return;
+        var keys = ['ba','ta','tsa','jim','ha_kecil','kha','dal','dzal','ra','zai',
+                    'sin','syin','shad','dhad','tha_besar','zha','ain','ghain','fa','qaf',
+                    'kaf','lam','mim','nun','ha_besar','waw','alif','hamzah'];
+        var h = '<div class="harakat-grid">';
+        for (var i = 0; i < keys.length; i++) {
+            var k = keys[i];
+            var d = HURUF_DATA[k];
+            if (!d) continue;
+            var audioPath = HARAKAT_AUDIO[k] || '';
+            if (audioPath) {
+                h += '<div class="harakat-card" onclick="playAudio(\'' + audioPath + '\')">'
+                    + '<span class="harakat-char">' + d.char + '</span>'
+                    + '<span class="harakat-name">' + d.name + '</span>'
+                    + '<span class="harakat-play-icon">🔊</span>'
+                    + '</div>';
+            } else {
+                h += '<div class="harakat-card dim">'
+                    + '<span class="harakat-char">' + d.char + '</span>'
+                    + '<span class="harakat-name">' + d.name + '</span>'
+                    + '</div>';
+            }
+        }
+        h += '</div>';
+        G.innerHTML = h;
     };
 })();
