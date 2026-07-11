@@ -218,4 +218,14 @@
         detailContent.innerHTML = h;
         detailPanel.style.display = 'flex';
     }
+
+    // SAMPLE HARAKAT
+    window.sampleHarakat = function(type) {
+        var audioFile = 'audio/harakat/1.ba-bi-bu.mp3';
+        var ap = document.getElementById('audioPlayer');
+        if (type === 'fathah') ap.src = audioFile;
+        else if (type === 'kasrah') ap.src = audioFile;
+        else if (type === 'dammah') ap.src = audioFile;
+        ap.play();
+    };
 })();

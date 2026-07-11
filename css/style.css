@@ -239,6 +239,10 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--emerald);c
 .dukung-card.buku{border:2px solid #42A5F5}
 .dukung-card.pdf-en{border:2px solid #FF9800}
 
+/* HTQ Praktek Button */
+.htq-praktek-btn{display:inline-block;background:linear-gradient(135deg,#F57C00,#FF9800);color:#fff;padding:0.7rem 1.8rem;border-radius:12px;font-weight:700;font-size:0.95rem;text-decoration:none;cursor:pointer}
+.htq-praktek-btn:hover{opacity:0.9}
+
 @media(max-width:400px){
     .splash-title{font-size:2rem}
     .splash-icon{width:76px;height:76px;font-size:2.2rem}

@@ -374,9 +374,12 @@
                 <div class="htq-section">
                     <h3 class="htq-section-title">✨ Harakat</h3>
                     <div class="htq-grid">
-                        <div class="htq-card" onclick="alert('Fathah (ﹰ) — bunyi A')"><span class="htq-char">بَ</span><span class="htq-label">Fathah</span></div>
-                        <div class="htq-card" onclick="alert('Kasrah (ﹺ) — bunyi I')"><span class="htq-char">بِ</span><span class="htq-label">Kasrah</span></div>
-                        <div class="htq-card" onclick="alert('Dammah (ﹸ) — bunyi U')"><span class="htq-char">بُ</span><span class="htq-label">Dammah</span></div>
+                        <div class="htq-card" onclick="sampleHarakat('fathah')"><span class="htq-char">بَ</span><span class="htq-label">Fathah</span></div>
+                        <div class="htq-card" onclick="sampleHarakat('kasrah')"><span class="htq-char">بِ</span><span class="htq-label">Kasrah</span></div>
+                        <div class="htq-card" onclick="sampleHarakat('dammah')"><span class="htq-char">بُ</span><span class="htq-label">Dammah</span></div>
+                    </div>
+                    <div style="text-align:center;margin:0.5rem 0">
+                        <div class="htq-sample-note" style="font-size:0.75rem;color:var(--gray);margin-bottom:0.3rem">🔊 Tap kartu untuk dengar contoh</div>
                     </div>
                 </div>
                 <div class="htq-section">
@@ -397,6 +400,10 @@
                         <div class="htq-card q" onclick="alert('Dal — qolqolah')"><span class="htq-char">د</span><span class="htq-label">Dal</span></div>
                     </div>
                     <p class="htq-tips">💡 Ingat qolqolah: <strong>"QATBU JADDI"</strong></p>
+                </div>
+                <div class="htq-section" style="text-align:center">
+                    <a class="htq-praktek-btn" href="#" onclick="showPage('pagePilihKeluarga');return false">🔊 Praktik Harakat 29 Huruf →</a>
+                    <p style="font-size:0.75rem;color:var(--gray);margin-top:0.3rem">Tap huruf → 🔊 Dengarkan Harakat</p>
                 </div>
             </div>
         </div>
@@ -426,7 +433,7 @@
 </div>
 
 <audio id="audioPlayer" style="display:none"></audio>
-<script src="js/data2.js?v=6"></script>
-<script src="js/app2.js?v=6"></script>
+<script src="js/data2.js?v=7"></script>
+<script src="js/app2.js?v=7"></script>
 </body>
 </html>
