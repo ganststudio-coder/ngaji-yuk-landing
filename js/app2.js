@@ -27,7 +27,7 @@
             if (el) el.style.display = (p === id) ? 'block' : 'none';
         });
         window.scrollTo(0, 0);
-        if (id === 'pageHTQ' && window.generateHarakatGrid) generateHarakatGrid();
+        if (id === 'pageHTQ' && window.generateHarakatGrid2) generateHarakatGrid2();
     };
 
     // Splash
@@ -219,33 +219,70 @@
         detailPanel.style.display = 'flex';
     }
 
-    // HARAKAT GRID — generate 29 huruf
-    window.generateHarakatGrid = function() {
-        var G = document.getElementById('harakatGrid');
-        if (!G) return;
+    // HARAKAT + TANWIN GRID — 3 bentuk per huruf
+    window.generateHarakatGrid2 = function() {
+        var HG = document.getElementById('harakatGrid2');
+        var TG = document.getElementById('tanwinGrid2');
+        if (!HG && !TG) return;
         var keys = ['ba','ta','tsa','jim','ha_kecil','kha','dal','dzal','ra','zai',
                     'sin','syin','shad','dhad','tha_besar','zha','ain','ghain','fa','qaf',
-                    'kaf','lam','mim','nun','ha_besar','waw','alif','hamzah'];
-        var h = '<div class="harakat-grid">';
-        for (var i = 0; i < keys.length; i++) {
-            var k = keys[i];
-            var d = HURUF_DATA[k];
-            if (!d) continue;
-            var audioPath = HARAKAT_AUDIO[k] || '';
-            if (audioPath) {
-                h += '<div class="harakat-card" onclick="playAudio(\'' + audioPath + '\')">'
-                    + '<span class="harakat-char">' + d.char + '</span>'
-                    + '<span class="harakat-name">' + d.name + '</span>'
-                    + '<span class="harakat-play-icon">🔊</span>'
-                    + '</div>';
-            } else {
-                h += '<div class="harakat-card dim">'
-                    + '<span class="harakat-char">' + d.char + '</span>'
-                    + '<span class="harakat-name">' + d.name + '</span>'
+                    'kaf','lam','mim','nun','ha_besar','waw','ya','alif','hamzah'];
+        // FATHAH \u064e, KASRAH \u0650, DAMMAH \u064f
+        // TANWIN: fathah \u064b, kasrah \u064d, dammah \u064c
+        if (HG) {
+            var h = '<div class="harakat-grid2">';
+            for (var i = 0; i < keys.length; i++) {
+                var k = keys[i];
+                var d = HURUF_DATA[k];
+                if (!d) continue;
+                var c = d.char;
+                var audioPath = HARAKAT_AUDIO[k] || '';
+                var fatha = c + '\u064e', kasra = c + '\u0650', damma = c + '\u064f';
+                if (audioPath) {
+                    h += '<div class="hr-row" onclick="playAudio(\'' + audioPath + '\')">'
+                        + '<span class="hr-name">' + d.name + '</span>'
+                        + '<span class="hr-forms">'
+                        + '<span class="hr-form">' + fatha + '</span>'
+                        + '<span class="hr-form">' + kasra + '</span>'
+                        + '<span class="hr-form">' + damma + '</span>'
+                        + '</span>'
+                        + '<span class="hr-play">🔊</span>'
+                        + '</div>';
+                } else {
+                    h += '<div class="hr-row dim">'
+                        + '<span class="hr-name">' + d.name + '</span>'
+                        + '<span class="hr-forms">'
+                        + '<span class="hr-form">' + fatha + '</span>'
+                        + '<span class="hr-form">' + kasra + '</span>'
+                        + '<span class="hr-form">' + damma + '</span>'
+                        + '</span>'
+                        + '<span class="hr-play" style="opacity:0.3">🚫</span>'
+                        + '</div>';
+                }
+            }
+            h += '</div>';
+            HG.innerHTML = h;
+        }
+        if (TG) {
+            var t = '<div class="harakat-grid2">';
+            for (var j = 0; j < keys.length; j++) {
+                var k2 = keys[j];
+                var d2 = HURUF_DATA[k2];
+                if (!d2) continue;
+                var c2 = d2.char;
+                var tanwinF = c2 + '\u064b', tanwinK = c2 + '\u064d', tanwinD = c2 + '\u064c';
+                t += '<div class="hr-row tnw">'
+                    + '<span class="hr-name">' + d2.name + '</span>'
+                    + '<span class="hr-forms">'
+                    + '<span class="hr-form">' + tanwinF + '</span>'
+                    + '<span class="hr-form">' + tanwinK + '</span>'
+                    + '<span class="hr-form">' + tanwinD + '</span>'
+                    + '</span>'
+                    + '<span class="hr-play" style="opacity:0.3">📖</span>'
                     + '</div>';
             }
+            t += '</div>';
+            TG.innerHTML = t;
         }
-        h += '</div>';
-        G.innerHTML = h;
     };
 })();

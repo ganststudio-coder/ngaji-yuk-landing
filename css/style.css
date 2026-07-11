@@ -239,19 +239,24 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--emerald);c
 .dukung-card.buku{border:2px solid #42A5F5}
 .dukung-card.pdf-en{border:2px solid #FF9800}
 
-/* HTQ Praktek Button */
+/* ── HARAKAT GRID 2 (row per huruf) ── */
+.harakat-grid2{display:flex;flex-direction:column;gap:4px;margin:0.3rem 0}
+.hr-row{display:flex;align-items:center;padding:0.45rem 0.6rem;background:var(--white);border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,0.05);cursor:pointer;gap:6px}
+.hr-row:active{transform:scale(0.98);background:#f5f5f5}
+.hr-row.tnw{background:#FFF8E1;border-left:3px solid #FFB300}
+.hr-row.dim{opacity:0.55;cursor:default}
+.hr-name{font-weight:700;font-size:0.78rem;color:var(--dark);min-width:38px}
+.hr-forms{display:flex;gap:8px;flex:1;justify-content:center}
+.hr-form{font-size:1.35rem;line-height:1.3;color:var(--dark)}
+.hr-play{font-size:0.7rem;color:var(--gray);min-width:20px;text-align:right}
+
+@media(max-width:340px){
+  .hr-form{font-size:1.1rem}
+  .hr-name{font-size:0.7rem;min-width:32px}
+}
+
 .htq-praktek-btn{display:inline-block;background:linear-gradient(135deg,#F57C00,#FF9800);color:#fff;padding:0.7rem 1.8rem;border-radius:12px;font-weight:700;font-size:0.95rem;text-decoration:none;cursor:pointer}
 .htq-praktek-btn:hover{opacity:0.9}
-
-/* ── HARAKAT GRID ── */
-.harakat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0.5rem 0}
-.harakat-card{background:var(--white);border-radius:12px;padding:0.6rem 0.3rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);cursor:pointer;position:relative;overflow:hidden;transition:transform 0.15s}
-.harakat-card:active{transform:scale(0.95)}
-.harakat-card .harakat-char{display:block;font-size:1.6rem;line-height:1.4;color:var(--dark)}
-.harakat-card .harakat-name{display:block;font-size:0.65rem;color:var(--gray)}
-.harakat-card .harakat-play-icon{position:absolute;top:2px;right:4px;font-size:0.65rem;opacity:0.5}
-.harakat-card.dim{opacity:0.4;cursor:default}
-@media(max-width:340px){.harakat-grid{grid-template-columns:repeat(3,1fr)}}
 
 @media(max-width:400px){
     .splash-title{font-size:2rem}
