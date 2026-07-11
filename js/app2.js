@@ -237,14 +237,14 @@
                 if (!d) continue;
                 var c = d.char;
                 var audioPath = HARAKAT_AUDIO[k] || '';
-                var fatha = c + '\u064e', kasra = c + '\u0650', damma = c + '\u064f';
+                var damma = c + '\u064f', kasra = c + '\u0650', fatha = c + '\u064e';
                 if (audioPath) {
                     h += '<div class="hr-row" onclick="playAudio(\'' + audioPath + '\')">'
                         + '<span class="hr-name">' + d.name + '</span>'
                         + '<span class="hr-forms">'
-                        + '<span class="hr-form">' + fatha + '</span>'
-                        + '<span class="hr-form">' + kasra + '</span>'
                         + '<span class="hr-form">' + damma + '</span>'
+                        + '<span class="hr-form">' + kasra + '</span>'
+                        + '<span class="hr-form">' + fatha + '</span>'
                         + '</span>'
                         + '<span class="hr-play">🔊</span>'
                         + '</div>';
@@ -252,9 +252,9 @@
                     h += '<div class="hr-row dim">'
                         + '<span class="hr-name">' + d.name + '</span>'
                         + '<span class="hr-forms">'
-                        + '<span class="hr-form">' + fatha + '</span>'
-                        + '<span class="hr-form">' + kasra + '</span>'
                         + '<span class="hr-form">' + damma + '</span>'
+                        + '<span class="hr-form">' + kasra + '</span>'
+                        + '<span class="hr-form">' + fatha + '</span>'
                         + '</span>'
                         + '<span class="hr-play" style="opacity:0.3">🚫</span>'
                         + '</div>';
@@ -270,13 +270,13 @@
                 var d2 = HURUF_DATA[k2];
                 if (!d2) continue;
                 var c2 = d2.char;
-                var tanwinF = c2 + '\u064b', tanwinK = c2 + '\u064d', tanwinD = c2 + '\u064c';
+                var tanwinD = c2 + '\u064c', tanwinK = c2 + '\u064d', tanwinF = c2 + '\u064b';
                 t += '<div class="hr-row tnw">'
                     + '<span class="hr-name">' + d2.name + '</span>'
                     + '<span class="hr-forms">'
-                    + '<span class="hr-form">' + tanwinF + '</span>'
-                    + '<span class="hr-form">' + tanwinK + '</span>'
                     + '<span class="hr-form">' + tanwinD + '</span>'
+                    + '<span class="hr-form">' + tanwinK + '</span>'
+                    + '<span class="hr-form">' + tanwinF + '</span>'
                     + '</span>'
                     + '<span class="hr-play" style="opacity:0.3">📖</span>'
                     + '</div>';
