@@ -235,6 +235,7 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--emerald);c
 .pdf-note{text-align:center;font-size:0.75rem;color:var(--gray);margin:0.5rem 1rem 1.2rem}
 
 .dukung-card.buku{border:2px solid #42A5F5}
+.dukung-card.pdf-en{border:2px solid #FF9800}
 
 @media(max-width:400px){
     .splash-title{font-size:2rem}

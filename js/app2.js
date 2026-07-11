@@ -18,7 +18,7 @@
     var allPages = [
         'pageMenu','pagePilihKeluarga','pageKelompok','pageHuruf',
         'pageTalaqqi','pageRecord','pageTajwid','pageHTQ','pageSambung',
-        'pageDonasi','pageWA','pagePDF'
+        'pageDonasi','pageWA','pagePDF','pagePDFEnglish'
     ];
 
     window.showPage = function(id) {
