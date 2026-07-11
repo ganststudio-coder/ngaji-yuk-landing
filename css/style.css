@@ -221,6 +221,21 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--emerald);c
 .wa-call-btn{display:block;background:#25D366;color:#fff;text-decoration:none;padding:0.9rem;border-radius:12px;font-weight:700;font-size:0.92rem;text-align:center}
 .wa-hours{font-size:0.78rem;color:var(--gray);margin-top:0.9rem}
 
+/* ── BUKU PDF PAGE ── */
+.pdf-hero{text-align:center;padding:1.4rem 1rem 0.6rem}
+.pdf-icon{font-size:3.2rem;margin-bottom:0.3rem}
+.pdf-title{font-size:1.25rem;font-weight:800;color:var(--emerald);margin:0 0 0.2rem}
+.pdf-sub{font-size:0.82rem;color:var(--gray)}
+.pdf-card{background:var(--white);border-radius:16px;margin:0.8rem 1rem;padding:0.8rem 1rem;box-shadow:0 3px 12px rgba(0,0,0,0.06)}
+.pdf-detail-row{display:flex;justify-content:space-between;align-items:center;padding:0.45rem 0;border-bottom:1px solid #f0f0f0;font-size:0.85rem}
+.pdf-detail-row:last-child{border-bottom:none}
+.pdf-desc{background:#F9FBE7;border-radius:14px;margin:0.6rem 1rem;padding:0.8rem 1rem;font-size:0.82rem;line-height:1.7;color:var(--dark)}
+.pdf-desc p{margin:0.2rem 0}
+.pdf-download-btn{display:block;margin:1rem 1rem 0.5rem;padding:0.9rem;text-align:center;background:linear-gradient(135deg,#1B5E3B,#2E7D32);color:#fff;font-weight:800;font-size:1rem;border-radius:14px;text-decoration:none}
+.pdf-note{text-align:center;font-size:0.75rem;color:var(--gray);margin:0.5rem 1rem 1.2rem}
+
+.dukung-card.buku{border:2px solid #42A5F5}
+
 @media(max-width:400px){
     .splash-title{font-size:2rem}
     .splash-icon{width:76px;height:76px;font-size:2.2rem}
