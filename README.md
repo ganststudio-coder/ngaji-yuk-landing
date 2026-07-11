@@ -31,4 +31,4 @@ File audio MP3 ada di folder `audio/`. Abah bisa generate VO baru dan replace di
 - [ ] Dashboard Orang Tua
 
 ---
-Dibuat dengan ❤️ oleh Abah Gandhi untuk anak-anak Indonesia
+Dibuat dengan  oleh Ganst|-Studio untuk anak-anak Indonesia
