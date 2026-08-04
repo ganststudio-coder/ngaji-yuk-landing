@@ -110,5 +110,6 @@ var HARAKAT_AUDIO = {
     ha_besar:'audio/harakat/26.ha-hi-hu.mp3', 
     waw:'audio/harakat/25.wa-wi-wu.mp3',
     alif:'audio/harakat/28.alif-a-i-u.mp3', 
-    hamzah:'audio/harakat/27-hamza-a-i-u.mp3'
+    hamzah:'audio/harakat/27.hamza-a-i-u.mp3',
+    ya:'audio/harakat/30.ya-yi-yu.mp3'
 };
