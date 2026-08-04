@@ -263,23 +263,38 @@
             h += '</div>';
             HG.innerHTML = h;
         }
-        if (TG) {
+                if (TG) {
             var t = '<div class="harakat-grid2">';
             for (var j = 0; j < keys.length; j++) {
                 var k2 = keys[j];
                 var d2 = HURUF_DATA[k2];
                 if (!d2) continue;
+                
+                var tanwinAudio = TANWIN_AUDIO[k2]; 
                 var c2 = d2.char;
                 var tanwinD = c2 + '\u064c', tanwinK = c2 + '\u064d', tanwinF = c2 + '\u064b';
-                t += '<div class="hr-row tnw">'
-                    + '<span class="hr-name">' + d2.name + '</span>'
-                    + '<span class="hr-forms">'
-                    + '<span class="hr-form">' + tanwinD + '</span>'
-                    + '<span class="hr-form">' + tanwinK + '</span>'
-                    + '<span class="hr-form">' + tanwinF + '</span>'
-                    + '</span>'
-                    + '<span class="hr-play" style="opacity:0.3">📖</span>'
-                    + '</div>';
+                
+                if (tanwinAudio) {
+                    t += '<div class="hr-row tnw" onclick="playAudio(\'' + tanwinAudio + '\')">'
+                        + '<span class="hr-name">' + d2.name + '</span>'
+                        + '<span class="hr-forms">'
+                        + '<span class="hr-form">' + tanwinD + '</span>'
+                        + '<span class="hr-form">' + tanwinK + '</span>'
+                        + '<span class="hr-form">' + tanwinF + '</span>'
+                        + '</span>'
+                        + '<span class="hr-play">🔊</span>'
+                        + '</div>';
+                } else {
+                    t += '<div class="hr-row tnw dim">'
+                        + '<span class="hr-name">' + d2.name + '</span>'
+                        + '<span class="hr-forms">'
+                        + '<span class="hr-form">' + tanwinD + '</span>'
+                        + '<span class="hr-form">' + tanwinK + '</span>'
+                        + '<span class="hr-form">' + tanwinF + '</span>'
+                        + '</span>'
+                        + '<span class="hr-play" style="opacity:0.3">🚫</span>'
+                        + '</div>';
+                }
             }
             t += '</div>';
             TG.innerHTML = t;
