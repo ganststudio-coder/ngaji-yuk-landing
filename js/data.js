@@ -1,7 +1,6 @@
 // ════════════════════════════════════════
 // NGAJI YUK! — Data
 // ════════════════════════════════════════
-
 var KELOMPOK_TITIK = [
     { label:'Kelompok 1', huruf:['ba','ta','tsa'] },
     { label:'Kelompok 2', huruf:['jim','ha_kecil','kha'] },
@@ -13,11 +12,9 @@ var KELOMPOK_TITIK = [
     { label:'Kelompok 8', huruf:['ain','ghain'] },
     { label:'Kelompok 9', huruf:['fa','qaf'] }
 ];
-
 var KELOMPOK_UNIK = [
     { label:'Kelompok Unik', huruf:['alif','lam','mim','ha_besar','waw','kaf','nun','ya','hamzah'] }
 ];
-
 // Data huruf sambung (29 huruf)
 var SAMBUNG_DATA = {
     ba:  { char:'ب', nama:"Ba'",   awal:'بـ', tengah:'ـبـ', akhir:'ـب', sambung:'bisa', kelompok:'Titik' },
@@ -47,7 +44,7 @@ var SAMBUNG_DATA = {
     ha_besar:{char:'ه', nama:"Ha'", awal:'هـ', tengah:'ـهـ', akhir:'ـه', sambung:'bisa', kelompok:'Unik' },
     waw: { char:'و', nama:'Waw',   awal:'و', tengah:'', akhir:'ـو', sambung:'tidak_kiri', kelompok:'Unik' },
     ya:  { char:'ي', nama:"Ya'",   awal:'يـ', tengah:'ـيـ', akhir:'ـي', sambung:'bisa', kelompok:'Unik' },
-    alif:{ char:'ا', nama:'Alif',  awal:'ا', tengah:'', akhir:'ـا', sambung:'tidak_kiri', kelompok:'Unik' },
+alif:{ char:'ا', nama:'Alif',  awal:'ا', tengah:'', akhir:'ـا', sambung:'tidak_kiri', kelompok:'Unik' },
     hamzah:{char:'ء', nama:'Hamzah',awal:'ء', tengah:'', akhir:'ـئ', sambung:'tidak_kiri', kelompok:'Unik' }
 };
 
@@ -78,7 +75,20 @@ var HURUF_DATA = {
     nun:{char:'ن',name:'Nun',audio:'audio/24_nun.mp3',bunyi:'N',qolqolah:false,sambung:'bisa',makhraj:'Ujung lidah ke langit',contoh:'نُور'},
     ha_besar:{char:'ه',name:"Ha'",audio:'audio/29_ha_besar.mp3',bunyi:'H',qolqolah:false,sambung:'bisa',makhraj:'Akhir tenggorokan',contoh:'هُدَى'},
     waw:{char:'و',name:'Waw',audio:'audio/28_waw.mp3',bunyi:'W',qolqolah:false,sambung:'tidak_kiri',makhraj:'Kedua bibir membulat',contoh:'وَحْدَة'},
-    ya:{char:'ي',name:"Ya'",audio:'audio/25_ya.mp3',bunyi:'Y',qolqolah:false,sambung:'bisa',makhraj:'Tengah lidah ke langit',contoh:'يَمِين'},
+ya:{char:'ي',name:"Ya'",audio:'audio/25_ya.mp3',bunyi:'Y',qolqolah:false,sambung:'bisa',makhraj:'Tengah lidah ke langit',contoh:'يَمِين'},
     alif:{char:'ا',name:'Alif',audio:'audio/26_alif.mp3',bunyi:'A',qolqolah:false,sambung:'tidak_kiri',makhraj:'Rongga tenggorokan',contoh:'أَحَد'},
     hamzah:{char:'ء',name:'Hamzah',audio:'audio/30_hamzah.mp3',bunyi:"'A",qolqolah:false,sambung:'tidak_kiri',makhraj:'Ujung tenggorokan',contoh:'سَأَل'}
+};
+
+var HARAKAT_AUDIO = {
+    ba:'audio/harakat/1.ba-bi-bu.mp3', ta:'audio/harakat/2.ta-ti-tu.mp3', tsa:'audio/harakat/3.tsa-tsi-tsu.mp3',
+    jim:'audio/harakat/4.ja-ji-ju.mp3', ha_kecil:'audio/harakat/5.ha-hi-hu.mp3', kha:'audio/harakat/6.kho-khi-khu.mp3',
+    dal:'audio/harakat/7.da-di-du.mp3', dzal:'audio/harakat/8.dza-dzi-dzu.mp3', ra:'audio/harakat/9.ro-ri-ru.mp3',
+    zai:'audio/harakat/10.za-zi-zu.mp3', sin:'audio/harakat/11.sa-si-su.mp3', syin:'audio/harakat/12.sya-syi-syu.mp3',
+    shad:'audio/harakat/13.sha-shi-su.mp3', dhad:'audio/harakat/14.dho-dhi-dhu.mp3', tha_besar:'audio/harakat/15.tho-thi-thu.mp3',
+    zha:'audio/harakat/16.zho-zhi-zhu.mp3', ain:'audio/harakat/17.Aa-Ii-Uu.mp3', ghain:'audio/harakat/18.gho-ghi-ghu.mp3',
+    fa:'audio/harakat/19.fa-fi-fu.mp3', qaf:'audio/harakat/20.ko-ki-ku.mp3', kaf:'audio/harakat/21.ka-ki-ku.mp3',
+    lam:'audio/harakat/22.la-li-lu.mp3', mim:'audio/harakat/23.ma-mi-mu.mp3', nun:'audio/harakat/24.na-ni-nu.mp3',
+    ha_besar:'audio/harakat/26.ha-hi-hu.mp3', waw:'audio/harakat/25.wa-wi-wu.mp3',
+    alif:'audio/harakat/28-alif-a-i-u.mp3', hamzah:'audio/harakat/27-hamza-a-i-u.mp3'
 };
