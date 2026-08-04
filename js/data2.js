@@ -1,5 +1,5 @@
 // ════════════════════════════════════════
-// NGAJI YUK! — Data
+// NGAJI YUK! — Data (Revisi Nama File Audio)
 // ════════════════════════════════════════
 
 var KELOMPOK_TITIK = [
@@ -18,7 +18,6 @@ var KELOMPOK_UNIK = [
     { label:'Kelompok Unik', huruf:['alif','lam','mim','ha_besar','waw','kaf','nun','ya','hamzah'] }
 ];
 
-// Data huruf sambung (29 huruf)
 var SAMBUNG_DATA = {
     ba:  { char:'ب', nama:"Ba'",   awal:'بـ', tengah:'ـبـ', akhir:'ـب', sambung:'bisa', kelompok:'Titik' },
     ta:  { char:'ت', nama:"Ta'",   awal:'تـ', tengah:'ـتـ', akhir:'ـت', sambung:'bisa', kelompok:'Titik' },
@@ -32,8 +31,8 @@ var SAMBUNG_DATA = {
     zai: { char:'ز', nama:'Zai',   awal:'ز', tengah:'', akhir:'ـز', sambung:'tidak_kiri', kelompok:'Melengkung' },
     sin: { char:'س', nama:'Sin',   awal:'سـ', tengah:'ـسـ', akhir:'ـس', sambung:'bisa', kelompok:'Bergerigi' },
     syin:{ char:'ش', nama:'Syin',  awal:'شـ', tengah:'ـشـ', akhir:'ـش', sambung:'bisa', kelompok:'Bergerigi' },
-    shad:{ char:'ص', nama:'Shod',  awal:'صـ', tengah:'ـصـ', akhir:'ـص', sambung:'bisa', kelompok:'Bergerigi' },
-    dhad:{ char:'ض', nama:'Dhod',  awal:'ضـ', tengah:'ـضـ', akhir:'ـض', sambung:'bisa', kelompok:'Bergerigi' },
+    shad:{char:'ص', nama:'Shod',  awal:'صـ', tengah:'ـصـ', akhir:'ـص', sambung:'bisa', kelompok:'Bergerigi' },
+    dhad:{char:'ض', nama:'Dhod',  awal:'ضـ', tengah:'ـضـ', akhir:'ـض', sambung:'bisa', kelompok:'Bergerigi' },
     tha_besar:{char:'ط', nama:"Tho'", awal:'طـ', tengah:'ـطـ', akhir:'ـط', sambung:'bisa', kelompok:'Unik' },
     zha: { char:'ظ', nama:"Dzo'",  awal:'ظـ', tengah:'ـظـ', akhir:'ـظ', sambung:'bisa', kelompok:'Unik' },
     ain: { char:'ع', nama:"'Ain",  awal:'عـ', tengah:'ـعـ', akhir:'ـع', sambung:'bisa', kelompok:'Unik' },
@@ -41,7 +40,7 @@ var SAMBUNG_DATA = {
     fa:  { char:'ف', nama:"Fa'",   awal:'فـ', tengah:'ـفـ', akhir:'ـف', sambung:'bisa', kelompok:'Unik' },
     qaf: { char:'ق', nama:'Qof',   awal:'قـ', tengah:'ـقـ', akhir:'ـق', sambung:'bisa', kelompok:'Unik' },
     kaf: { char:'ك', nama:'Kaf',   awal:'كـ', tengah:'ـكـ', akhir:'ـك', sambung:'bisa', kelompok:'Unik' },
-    lam: { char:'ل', nama:'Lam',   awal:'لـ', tengah:'ـلـ', akhir:'ـل', sambung:'bisa', kelompok:'Unik' },
+lam: { char:'ل', nama:'Lam',   awal:'لـ', tengah:'ـلـ', akhir:'ـل', sambung:'bisa', kelompok:'Unik' },
     mim: { char:'م', nama:'Mim',   awal:'مـ', tengah:'ـمـ', akhir:'ـم', sambung:'bisa', kelompok:'Unik' },
     nun: { char:'ن', nama:'Nun',   awal:'نـ', tengah:'ـنـ', akhir:'ـن', sambung:'bisa', kelompok:'Unik' },
     ha_besar:{char:'ه', nama:"Ha'", awal:'هـ', tengah:'ـهـ', akhir:'ـه', sambung:'bisa', kelompok:'Unik' },
@@ -73,7 +72,7 @@ var HURUF_DATA = {
     fa:{char:'ف',name:"Fa'",audio:'audio/20_fa.mp3',bunyi:'F',qolqolah:false,sambung:'bisa',makhraj:'Bibir bawah + gigi atas',contoh:'فَرْض'},
     qaf:{char:'ق',name:'Qof',audio:'audio/21_qaf.mp3',bunyi:'Q',qolqolah:true,sambung:'bisa',makhraj:'Pangkal lidah ke langit',contoh:'قُرْآن'},
     kaf:{char:'ك',name:'Kaf',audio:'audio/22_kaf.mp3',bunyi:'K',qolqolah:false,sambung:'bisa',makhraj:'Tengah lidah ke langit',contoh:'كِتَاب'},
-    lam:{char:'ل',name:'Lam',audio:'audio/23_lam.mp3',bunyi:'L',qolqolah:false,sambung:'bisa',makhraj:'Sisi lidah ke langit',contoh:'لَطِيف'},
+lam:{char:'ل',name:'Lam',audio:'audio/23_lam.mp3',bunyi:'L',qolqolah:false,sambung:'bisa',makhraj:'Sisi lidah ke langit',contoh:'لَطِIF'},
     mim:{char:'م',name:'Mim',audio:'audio/27_mim.mp3',bunyi:'M',qolqolah:false,sambung:'bisa',makhraj:'Kedua bibir',contoh:'مُحَمَّد'},
     nun:{char:'ن',name:'Nun',audio:'audio/24_nun.mp3',bunyi:'N',qolqolah:false,sambung:'bisa',makhraj:'Ujung lidah ke langit',contoh:'نُور'},
     ha_besar:{char:'ه',name:"Ha'",audio:'audio/29_ha_besar.mp3',bunyi:'H',qolqolah:false,sambung:'bisa',makhraj:'Akhir tenggorokan',contoh:'هُدَى'},
@@ -83,18 +82,33 @@ var HURUF_DATA = {
     hamzah:{char:'ء',name:'Hamzah',audio:'audio/30_hamzah.mp3',bunyi:"'A",qolqolah:false,sambung:'tidak_kiri',makhraj:'Ujung tenggorokan',contoh:'سَأَل'}
 };
 
-// ════════════════════════════════════════
-// HARAKAT VO — Audio per huruf
-// ════════════════════════════════════════
 var HARAKAT_AUDIO = {
-    ba:'audio/harakat/1.ba-bi-bu.mp3', ta:'audio/harakat/2.ta-ti-tu.mp3', tsa:'audio/harakat/3.tsa-tsi-tsu.mp3',
-    jim:'audio/harakat/4.ja-ji-ju.mp3', ha_kecil:'audio/harakat/5.ha-hi-hu.mp3', kha:'audio/harakat/6.kho-khi-khu.mp3',
-    dal:'audio/harakat/7.da-di-du.mp3', dzal:'audio/harakat/8.dza-dzi-dzu.mp3', ra:'audio/harakat/9.ro-ri-ru.mp3',
-    zai:'audio/harakat/10.za-zi-zu.mp3', sin:'audio/harakat/11.sa-si-su.mp3', syin:'audio/harakat/12.sya-syi-syu.mp3',
-    shad:'audio/harakat/13.sha-shi-su.mp3', dhad:'audio/harakat/14.dho-dhi-dhu.mp3', tha_besar:'audio/harakat/15.tho-thi-thu.mp3',
-    zha:'audio/harakat/16.zho-zhi-zhu.mp3', ain:'audio/harakat/17.Aa-Ii-Uu.mp3', ghain:'audio/harakat/18.gho-ghi-ghu.mp3',
-    fa:'audio/harakat/19.fa-fi-fu.mp3', qaf:'audio/harakat/20.ko-ki-ku.mp3', kaf:'audio/harakat/21.ka-ki-ku.mp3',
-    lam:'audio/harakat/22.la-li-lu.mp3', mim:'audio/harakat/23.ma-mi-mu.mp3', nun:'audio/harakat/24.na-ni-nu.mp3',
-    ha_besar:'audio/harakat/26.ha-hi-hu.mp3', waw:'audio/harakat/25.wa-wi-wu.mp3',
-    alif:'audio/harakat/28-alif-a-i-u.mp3', hamzah:'audio/harakat/27-hamza-a-i-u.mp3'
+    ba:'audio/harakat/1.ba-bi-bu.mp3', 
+    ta:'audio/harakat/2.ta-ti-tu.mp3', 
+    tsa:'audio/harakat/3.tsa-tsi-tsu.mp3',
+    jim:'audio/harakat/4.ja-ji-ju.mp3', 
+    ha_kecil:'audio/harakat/5.ha-hi-hu.mp3', 
+    kha:'audio/harakat/6.kho-khi-khu.mp3',
+    dal:'audio/harakat/7.da-di-du.mp3', 
+    dzal:'audio/harakat/8.dza-dzi-dzu.mp3', 
+    ra:'audio/harakat/9.ro-ri-ru.mp3',
+    zai:'audio/harakat/10.za-zi-zu.mp3', 
+    sin:'audio/harakat/11.sa-si-su.mp3', 
+    syin:'audio/harakat/12.sya-syi-syu.mp3',
+    shad:'audio/harakat/13.sha-shi-su.mp3', 
+    dhad:'audio/harakat/14.dho-dhi-dhu.mp3', 
+    tha_besar:'audio/harakat/15.tho-thi-thu.mp3',
+    zha:'audio/harakat/16.zho-zhi-zhu.mp3', 
+    ain:'audio/harakat/17.Aa-Ii-Uu.mp3', 
+    ghain:'audio/harakat/18.gho-ghi-ghu.mp3',
+    fa:'audio/harakat/19.fa-fi-fu.mp3', 
+    qaf:'audio/harakat/20.ko-ki-ku.mp3', 
+    kaf:'audio/harakat/21.ka-ki-ku.mp3',
+    lam:'audio/harakat/22.la-li-lu.mp3', 
+    mim:'audio/harakat/23.ma-mi-mu.mp3', 
+    nun:'audio/harakat/24.na-ni-nu.mp3',
+    ha_besar:'audio/harakat/26.ha-hi-hu.mp3', 
+    waw:'audio/harakat/25.wa-wi-wu.mp3',
+    alif:'audio/harakat/28.alif-a-i-u.mp3', 
+    hamzah:'audio/harakat/27-hamza-a-i-u.mp3'
 };
