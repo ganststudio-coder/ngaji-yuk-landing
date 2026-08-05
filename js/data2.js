@@ -79,7 +79,8 @@ lam:{char:'ل',name:'Lam',audio:'audio/23_lam.mp3',bunyi:'L',qolqolah:false,samb
     waw:{char:'و',name:'Waw',audio:'audio/28_waw.mp3',bunyi:'W',qolqolah:false,sambung:'tidak_kiri',makhraj:'Kedua bibir membulat',contoh:'وَحْدَة'},
     ya:{char:'ي',name:"Ya'",audio:'audio/25_ya.mp3',bunyi:'Y',qolqolah:false,sambung:'bisa',makhraj:'Tengah lidah ke langit',contoh:'يَمِين'},
     alif:{char:'ا',name:'Alif',audio:'audio/26_alif.mp3',bunyi:'A',qolqolah:false,sambung:'tidak_kiri',makhraj:'Rongga tenggorokan',contoh:'أَحَد'},
-    hamzah:{char:'ء',name:'Hamzah',audio:'audio/30_hamzah.mp3',bunyi:"'A",qolqolah:false,sambung:'tidak_kiri',makhraj:'Ujung tenggorokan',contoh:'سَأَل'}
+    hamzah:{char:'ء',name:'Hamzah',audio:'audio/30_hamzah.mp3',bunyi:"'A",qolqolah:false,sambung:'tidak_kiri',makhraj:'Ujung tenggorokan',contoh:'سَأَل'},
+    lam_alif:{char:'لا',name:'Lam-Alif',audio:'audio/tanwin/24_Huruf LAM-ALIF Harakatain.mp3',bunyi:'LA',qolqolah:false,sambung:'tidak_kiri',makhraj:'Sisi lidah ke langit',contoh:'لَا'}
 };
 
 var HARAKAT_AUDIO = {
