@@ -112,12 +112,17 @@
     }
 
     // TALAQQI
-    var taPreview = {
-        makhraj: 'بَ تَ ثَ جَ حَ خَ',
-        harakat: 'بَ  بِ  بُ',
-        tanwin: 'بً  بٍ  بٌ',
-        qolqolah: 'قَ  طَ  بَ  جَ  دَ'
+    // Semua data untuk tampilan Talaqqi
+    var ALL_KEYS = ['ba','ta','tsa','jim','ha_kecil','kha','dal','dzal','ra','zai','sin','syin','shad','dhad','tha_besar','zha','ain','ghain','fa','qaf','kaf','lam','mim','nun','ha_besar','waw','ya','alif','hamzah'];
+    var QOLQOLAH_KEYS = ['qaf','tha_besar','ba','jim','dal'];
+
+    var taItems = {
+        makhraj: ALL_KEYS.map(function(k) { return HURUF_DATA[k].char; }),
+        harakat: ALL_KEYS.map(function(k) { var c = HURUF_DATA[k].char; return c + '\u064e ' + c + '\u0650 ' + c + '\u064f'; }),
+        tanwin: ALL_KEYS.map(function(k) { var c = HURUF_DATA[k].char; return c + '\u064b ' + c + '\u064d ' + c + '\u064c'; }),
+        qolqolah: QOLQOLAH_KEYS.map(function(k) { return HURUF_DATA[k].char; })
     };
+
     window.openTalaqqi = function(mode) {
         document.getElementById('recTitle').textContent = {
             makhraj: '🔤 Huruf & Makhraj',
@@ -125,7 +130,7 @@
             tanwin: '〽️ Tanwin',
             qolqolah: '🔊 Qolqolah'
         }[mode];
-        document.getElementById('recordPreview').textContent = taPreview[mode];
+        document.getElementById('recordPreview').innerHTML = '<div style="font-size:1.5rem; line-height:2.5;">' + taItems[mode].join(' · ') + '</div>';
         document.getElementById('recordStatus').textContent = 'Tap mic untuk merekam';
         document.getElementById('recordResult').style.display = 'none';
         document.getElementById('btnRecord').className = 'btn-record';
