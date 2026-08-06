@@ -17,7 +17,7 @@
     // PAGE MAP
     var allPages = [
         'pageMenu','pagePilihKeluarga','pageKelompok','pageHuruf',
-        'pageTalaqqi','pageRecord','pageTajwid','pageHTQ','pageSambung',
+        'pageTalaqqi','pageRecord','pageTajwid','pageHTQ','pageSambung','pageLatihanSambung',
         'pageDonasi','pageWA','pagePDF','pagePDFEnglish'
     ];
 
@@ -49,7 +49,8 @@
         { icon:'🎙️', label:'Talaqqi', color:'#FFF3E0', border:'#E65100', page:'pageTalaqqi' },
         { icon:'🎵', label:'Tajwid', color:'#E3F2FD', border:'#1565C0', page:'pageTajwid' },
         { icon:'✨', label:'Harakat &\nQolqolah', color:'#FCE4EC', border:'#C62828', page:'pageHTQ' },
-        { icon:'🔗', label:'Huruf\nSambung', color:'#F3E5F5', border:'#6A1B9A', page:'pageSambung' }
+        { icon:'🔗', label:'Huruf\nSambung', color:'#F3E5F5', border:'#6A1B9A', page:'pageSambung' },
+        { icon:'📝', label:'Latihan\nSambung', color:'#E0F7FA', border:'#006064', page:'pageLatihanSambung' }
     ];
     var menuGrid = document.getElementById('menuGrid');
     menus.forEach(function(m) {
@@ -178,10 +179,37 @@
         r.style.display = 'block';
     }
 
+    // LATIHAN SAMBUNG
+    (function renderLatihanSambung() {
+        var container = document.getElementById('latihanSambungContainer');
+        if (!container) return;
+        var contoh = [
+            { title:'Contoh 1: Qaf-Tho-Ba', letters:['ق','ط','ب'], connected:'قَطْبٌ',
+              desc:'Analisis: Qaf di awal, Tho di tengah, Ba di akhir. Terdapat hukum Qolqolah pada huruf Tho (sukun).' },
+            { title:'Contoh 2: Mad Dasar', letters:['م','د','ا','ر','س'], connected:'مَدَارِسُ',
+              desc:'Analisis: Huruf Dal, Alif, Ra tidak dapat disambung ke setelahnya.' },
+            { title:'Contoh 3: Sukun & Mad', letters:['ج','د','ي','د'], connected:'جَدِيْدٌ',
+              desc:'Analisis: Penekanan pada Mad Ya dan tanwin di akhir.' }
+        ];
+        var cardHtml = '<div style="display:grid;grid-template-columns:1fr;gap:24px;padding:20px">';
+        contoh.forEach(function(c) {
+            cardHtml += '<div style="background:#fff;padding:24px;border-radius:12px;box-shadow:0 4px 6px rgba(0,0,0,0.1);border-top:4px solid #22c55e;display:flex;flex-direction:column;gap:12px">'
+                + '<div style="font-size:1.25rem;font-weight:700">' + c.title + '</div>'
+                + '<div style="display:flex;align-items:center;justify-content:center;gap:16px">'
+                + '<div style="display:flex;gap:8px">'
+                + c.letters.map(function(l) { return '<span style="font-size:1.5rem;background:#f3f4f6;padding:8px;border-radius:8px">' + l + '</span>'; }).join('')
+                + '</div>'
+                + '<span style="font-size:1.5rem">→</span>'
+                + '<span style="font-size:2.25rem;color:#15803d;font-family:\'Noto Naskh Arabic\',serif">' + c.connected + '</span>'
+                + '</div>'
+                + '<div style="font-size:0.875rem;color:#4b5563">' + c.desc + '</div>'
+                + '</div>';
+        });
+        container.innerHTML = cardHtml + '</div>';
+    })();
+
     // SAMBUNG
     (function renderSambung() {
-        // Module Latihan Huruf Sambung
-        // Module Latihan Huruf Sambung
         var conn = document.getElementById('connectorContainer');
         if (conn) {
             conn.innerHTML = '';
