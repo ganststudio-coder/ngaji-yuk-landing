@@ -181,6 +181,7 @@
     // SAMBUNG
     (function renderSambung() {
         // Module Latihan Huruf Sambung
+        // Module Latihan Huruf Sambung
         var conn = document.getElementById('connectorContainer');
         if (conn) {
             var contoh = [
@@ -205,7 +206,7 @@
                     + '<div style="font-size:0.875rem;color:#4b5563">' + c.desc + '</div>'
                     + '</div>';
             });
-            conn.innerHTML = '<h3 style="margin:0 0 16px">💡 Latihan Huruf Sambung</h3>'
+            conn.innerHTML = '<h2 style="margin:20px 0">📝 Latihan Huruf Sambung</h2>'
                 + '<div style="display:grid;grid-template-columns:1fr;gap:24px">' + cardHtml + '</div>';
         }
 
