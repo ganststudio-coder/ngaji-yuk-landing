@@ -180,6 +180,18 @@
 
     // SAMBUNG
     (function renderSambung() {
+        // Module Latihan Huruf Sambung
+        var conn = document.getElementById('connectorContainer');
+        if (conn) {
+            conn.innerHTML = '<div style="background:#f0fff4;padding:15px;border-radius:10px;margin-bottom:20px;border-left:5px solid #2e7d32">'
+                + '<h3 style="margin-top:0">💡 Latihan Huruf Sambung</h3>'
+                + '<div style="display:grid; grid-template-columns: 1fr; gap: 10px;">'
+                + '<div style="background:white;padding:10px;border-radius:5px;border:1px solid #ccc"><strong>قَطْبٌ</strong> (Qotbun)<br>Qaf awal - Tho tengah - Ba akhir. Tho = Qolqolah!</div>'
+                + '<div style="background:white;padding:10px;border-radius:5px;border:1px solid #ccc"><strong>مَدَارِسُ</strong> (Madaarisu)<br>Dal, Alif, Ra tidak bisa sambung kiri.</div>'
+                + '<div style="background:white;padding:10px;border-radius:5px;border:1px solid #ccc"><strong>جَدِيْدٌ</strong> (Jadiidun)<br>Mad Ya (panjang 2 harakat).</div>'
+                + '</div></div>';
+        }
+
         sambungList.innerHTML = '';
         Object.keys(SAMBUNG_DATA).forEach(function(k) {
             var d = SAMBUNG_DATA[k];
