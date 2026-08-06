@@ -111,12 +111,20 @@
     }
 
     // TALAQQI
-    var taPreview = {
-        makhraj: 'بَ تَ ثَ جَ حَ خَ',
-        harakat: 'بَ  بِ  بُ',
-        tanwin: 'بً  بٍ  بٌ',
-        qolqolah: 'قَ  طَ  بَ  جَ  دَ'
-    };
+    function getTalaqqiData(mode) {
+        var keys = Object.keys(HURUF_DATA);
+        if (mode === 'makhraj') {
+            return keys.map(k => HURUF_DATA[k].char).join(' ');
+        } else if (mode === 'harakat') {
+            return keys.map(k => HURUF_DATA[k].char + 'َ ' + HURUF_DATA[k].char + 'ِ ' + HURUF_DATA[k].char + 'ُ').join(' ');
+        } else if (mode === 'tanwin') {
+            return keys.map(k => HURUF_DATA[k].char + 'ً ' + HURUF_DATA[k].char + 'ٍ ' + HURUF_DATA[k].char + 'ٌ').join(' ');
+        } else if (mode === 'qolqolah') {
+            return keys.filter(k => HURUF_DATA[k].qolqolah).map(k => HURUF_DATA[k].char).join(' ');
+        }
+        return '';
+    }
+
     window.openTalaqqi = function(mode) {
         document.getElementById('recTitle').textContent = {
             makhraj: '🔤 Huruf & Makhraj',
@@ -124,7 +132,7 @@
             tanwin: '〽️ Tanwin',
             qolqolah: '🔊 Qolqolah'
         }[mode];
-        document.getElementById('recordPreview').textContent = taPreview[mode];
+        document.getElementById('recordPreview').textContent = getTalaqqiData(mode);
         document.getElementById('recordStatus').textContent = 'Tap mic untuk merekam';
         document.getElementById('recordResult').style.display = 'none';
         document.getElementById('btnRecord').className = 'btn-record';
