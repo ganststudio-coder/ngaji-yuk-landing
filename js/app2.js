@@ -206,8 +206,7 @@
                     + '<div style="font-size:0.875rem;color:#4b5563">' + c.desc + '</div>'
                     + '</div>';
             });
-            conn.innerHTML = '<h2 style="margin:20px 0">📝 Latihan Huruf Sambung</h2>'
-                + '<div style="display:grid;grid-template-columns:1fr;gap:24px">' + cardHtml + '</div>';
+            conn.innerHTML = '<div style="display:grid;grid-template-columns:1fr;gap:24px">' + cardHtml + '</div>';
         }
 
         sambungList.innerHTML = '';
