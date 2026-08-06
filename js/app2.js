@@ -183,13 +183,30 @@
         // Module Latihan Huruf Sambung
         var conn = document.getElementById('connectorContainer');
         if (conn) {
-            conn.innerHTML = '<div style="background:#f0fff4;padding:15px;border-radius:10px;margin-bottom:20px;border-left:5px solid #2e7d32">'
-                + '<h3 style="margin-top:0">💡 Latihan Huruf Sambung</h3>'
-                + '<div style="display:grid; grid-template-columns: 1fr; gap: 10px;">'
-                + '<div style="background:white;padding:10px;border-radius:5px;border:1px solid #ccc"><strong>قَطْبٌ</strong> (Qotbun)<br>Qaf awal - Tho tengah - Ba akhir. Tho = Qolqolah!</div>'
-                + '<div style="background:white;padding:10px;border-radius:5px;border:1px solid #ccc"><strong>مَدَارِسُ</strong> (Madaarisu)<br>Dal, Alif, Ra tidak bisa sambung kiri.</div>'
-                + '<div style="background:white;padding:10px;border-radius:5px;border:1px solid #ccc"><strong>جَدِيْدٌ</strong> (Jadiidun)<br>Mad Ya (panjang 2 harakat).</div>'
-                + '</div></div>';
+            var contoh = [
+                { title:'Contoh 1: Qaf-Tho-Ba', letters:['ق','ط','ب'], connected:'قَطْبٌ',
+                  desc:'Analisis: Qaf di awal, Tho di tengah, Ba di akhir. Terdapat hukum Qolqolah pada huruf Tho (sukun).' },
+                { title:'Contoh 2: Mad Dasar', letters:['م','د','ا','ر','س'], connected:'مَدَارِسُ',
+                  desc:'Analisis: Huruf Dal, Alif, Ra tidak dapat disambung ke setelahnya.' },
+                { title:'Contoh 3: Sukun & Mad', letters:['ج','د','ي','د'], connected:'جَدِيْدٌ',
+                  desc:'Analisis: Penekanan pada Mad Ya dan tanwin di akhir.' }
+            ];
+            var cardHtml = '';
+            contoh.forEach(function(c) {
+                cardHtml += '<div style="background:#fff;padding:24px;border-radius:12px;box-shadow:0 4px 6px rgba(0,0,0,0.1);border-top:4px solid #22c55e;display:flex;flex-direction:column;gap:12px">'
+                    + '<div style="font-size:1.25rem;font-weight:700">' + c.title + '</div>'
+                    + '<div style="display:flex;align-items:center;justify-content:center;gap:16px">'
+                    + '<div style="display:flex;gap:8px">'
+                    + c.letters.map(function(l) { return '<span style="font-size:1.5rem;background:#f3f4f6;padding:8px;border-radius:8px">' + l + '</span>'; }).join('')
+                    + '</div>'
+                    + '<span style="font-size:1.5rem">→</span>'
+                    + '<span style="font-size:2.25rem;color:#15803d;font-family:\'Noto Naskh Arabic\',serif">' + c.connected + '</span>'
+                    + '</div>'
+                    + '<div style="font-size:0.875rem;color:#4b5563">' + c.desc + '</div>'
+                    + '</div>';
+            });
+            conn.innerHTML = '<h3 style="margin:0 0 16px">💡 Latihan Huruf Sambung</h3>'
+                + '<div style="display:grid;grid-template-columns:1fr;gap:24px">' + cardHtml + '</div>';
         }
 
         sambungList.innerHTML = '';
